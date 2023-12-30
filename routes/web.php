@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\AppointmentController;
+use App\Http\Controllers\Auth\FeedbackController;
+use App\Http\Controllers\Auth\ReportController;
+
 
 
 /*
@@ -45,6 +48,12 @@ Route::controller(App\Http\Controllers\AppointmentController::class)->group(func
     Route::get('createAppointment', 'createAppointment')->name('createAppointment'); //link to go to add appointment page
     Route::get('indexAppointment', 'indexAppointment')->name('indexAppointment'); //link to go to appointment homepage
     Route::get('viewAppointment', 'viewAppointment')->name('viewAppointment'); //link to go to view list availability
+});
 
+Route::controller(App\Http\Controllers\FeedbackController::class)->group(function () {
+    Route::get('createFeedback', 'createFeedback')->name('createFeedback'); //link to go to add appointment page
+});
 
+Route::controller(App\Http\Controllers\ReportController::class)->group(function () {
+    Route::get('createReport', 'createReport')->name('createReport'); //link to go to add appointment page
 });
