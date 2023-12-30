@@ -50,6 +50,18 @@ class AvailabilityController extends Controller
         $availabilityData = AvailabilityRecord::find($id);
     }
 
+
+    public function ListAvailability($id)
+    {
+        $availabilityInfo = AvailabilityRecord::with('role')->where('user_id', $id)->get();
+
+        return view('ManageAvailability.AvailabilityListPage', [
+            'availabilityInfo' => $availabilityInfo,
+            'id' => $id,
+        ]);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      */

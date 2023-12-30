@@ -43,5 +43,8 @@ Route::controller(App\Http\Controllers\AvailabilityController::class)->group(fun
 
 Route::controller(App\Http\Controllers\AppointmentController::class)->group(function () {
     Route::get('createAppointment', 'createAppointment')->name('createAppointment'); //link to go to add appointment page
+    Route::get('indexAppointment', 'indexAppointment')->name('indexAppointment'); //link to go to appointment homepage
+    Route::get('viewAppointment', 'viewAppointment')->name('viewAppointment'); //link to go to view list availability
+
 
 });

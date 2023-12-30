@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AppointmentRecord;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class AppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function indexAppointment()
     {
-        //
+        //$appointment = AppointmentRecord::all();
+        return view('ManageAppointment.HomeAppointmentPage'//, ["appointment" => $appointment]
+    );
     }
 
     /**
@@ -33,9 +38,17 @@ class AppointmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function viewAppointment(string $id)
     {
-        //
+        $post = AppointmentRecord::all();
+
+        return view(
+
+            'ManageAppointment.ListAppointmentPage',
+            compact('post')
+
+
+        );
     }
 
     /**
@@ -59,6 +72,8 @@ class AppointmentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::delete('delete from appointments where id = ?', [$id]);
+
+        return redirect()->back();
     }
 }

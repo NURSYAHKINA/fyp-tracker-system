@@ -36,7 +36,7 @@
                         @csrf
 
                         <h3 style="text-align: center;">FPTS Login</h3>
-                        
+
                         <div class="form-group">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email">
 
@@ -60,13 +60,14 @@
                             <button type="submit" class="btn btn-theme">Login</button>
                         </div>
 
-                        <div class="register">
+                        <div class="register text-center">
                             @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                {{ __('Forgot Your Password?') }}
+                            </a>
+                            @endif
                         </div>
+
                     </form>
                 </div>
             </div>
