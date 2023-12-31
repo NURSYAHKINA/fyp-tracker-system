@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 
+
 @section('content')
 <div class="page-header">
     <div class="row align-items-end">
@@ -15,6 +16,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4">
             <nav class="breadcrumb-container" aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -26,6 +28,7 @@
                 </ol>
             </nav>
         </div>
+
     </div>
 </div>
 
@@ -51,7 +54,7 @@
                 Choose date
             </div>
             <div class="card-body">
-            <input type="date" class="form-control" name="date">
+                <input type="text" class="form-control datetimepicker-input" id="datepicker" data-toggle="datetimepicker" data-target="#datepicker">
             </div>
         </div>
 
@@ -149,9 +152,10 @@
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body" style="display: flex; justify-content: flex-end;">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
+
 
     </form>
 

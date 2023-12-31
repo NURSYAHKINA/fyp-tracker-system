@@ -54,6 +54,15 @@
 <script src="{{asset('template/js/charts.js')}}"></script>
 <script src="{{asset('template/dist/js/theme.min.js')}}"></script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#datepicker").datetimepicker({
+            format: 'DD-MM-YYYY'
+        })
+    })
+    
+</script>
+
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>
     (function(b, o, i, l, e, r) {
