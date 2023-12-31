@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AvailabilityRecord;
+use App\Models\TimeRecord;
 use Illuminate\Http\Request;
 
 class AvailabilityController extends Controller
@@ -28,17 +29,21 @@ class AvailabilityController extends Controller
      */
     public function storeAvailability(Request $request)
     {
-        // Create a new AvailabilityModel instance
-        $availabilityData = new AvailabilityRecord();
 
-        //$availabilityData->user_id;
-        $availabilityData->availability_id;
-        $availabilityData->time = $request->input('date');
+        $availabilitiesData = AvailabilityRecord::create([
+            'user_id' => auth()->user()->id,
+            'date' => $request->date
+        ]);
 
-          // Save the new availabilityData instance
-          $availabilityData->save();
+        foreach($request->times as $times ){
+            TimeRecord::create([
+                'availabilites_id'=> $availabilitiesData->id,
+                'time' => $times
+                //'status' => 
+            ]);
 
-          return redirect()->route('ListAvailability');
+        }
+        return redirect()->back()->with('message','Availabilites Created for'. $request->date);
 
     }
 
