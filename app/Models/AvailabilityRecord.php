@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class AvailabilityRecord extends Model
 {
-    protected $guarded = 'availabilities';
+    protected $guarded = [];
 
     protected $fillable = [
-        'availability_id',
+      'availability_id',
         'time',
-    ];}
+    ];
+}
