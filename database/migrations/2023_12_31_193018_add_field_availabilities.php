@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('availabilities', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('availabilities', function (Blueprint $table) {
+            $table->integer('user_id')->nullable();
+            $table->string('date')->nullable();
         });
     }
 
@@ -22,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('availabilities');
+        Schema::table('availabilities', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class TimeRecord extends Model
 {
     use HasFactory;
+
+    protected $table = 'times';
+
+    protected $fillable = [
+        'availabilities_id',
+        'time',
+        'status'
+    ];
 }
