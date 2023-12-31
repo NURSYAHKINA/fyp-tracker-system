@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\AvailabilityRecord;
 use App\Models\TimeRecord;
 use Illuminate\Http\Request;
+
 
 class AvailabilityController extends Controller
 {
@@ -13,7 +15,7 @@ class AvailabilityController extends Controller
      */
     public function indexAvailability()
     {
-       
+        return view('ManageAvailability.IndexAvailabilityPage');
     }
 
     /**
@@ -29,6 +31,12 @@ class AvailabilityController extends Controller
      */
     public function storeAvailability(Request $request)
     {
+        $this->validate($request, [
+            'date' => 'required|unique:availabilities,date,NULL,id,user_id,' . Auth::id(),
+            'time' => 'required'
+        ]);
+        
+
         $availabilitiesData = AvailabilityRecord::create([
             'user_id' => auth()->user()->id,
             'date' => $request->date
@@ -88,5 +96,21 @@ class AvailabilityController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function checkAvailability(Request $request)
+    {
+        $date = $request->date;
+        $availability = AvailabilityRecord::where('date',$date)->where('user_id', auth()->user()->id)->first();
+
+        if(!$availability){
+            return redirect()->to('/availability')->with('errmessage','Appointment time is not available for this date.' );
+        }
+
+        $availabilityId = $availability->id;
+        $times = TimeRecord::where('availabilities_id',$availabilityId)->get();
+
+        return $times;
+        return view ('ManageAvailability.IndexAvailabilityPage',compact('times','availabilityId','date'));
     }
 }
