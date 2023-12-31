@@ -29,17 +29,16 @@ class AvailabilityController extends Controller
      */
     public function storeAvailability(Request $request)
     {
-
         $availabilitiesData = AvailabilityRecord::create([
             'user_id' => auth()->user()->id,
             'date' => $request->date
         ]);
 
-        foreach($request->times as $times ){
+        foreach($request->time as $times ){
             TimeRecord::create([
-                'availabilites_id'=> $availabilitiesData->id,
-                'time' => $times
-                //'status' => 
+                'availabilities_id'=> $availabilitiesData->id,
+                'time' => $times,
+                'status' => 1
             ]);
 
         }
