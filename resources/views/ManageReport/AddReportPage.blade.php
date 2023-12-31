@@ -111,10 +111,10 @@
 
         var deleteButton = document.createElement('button');
         deleteButton.textContent = 'Remove';
-        deleteButton.style.padding = '4px 8px';
-        deleteButton.style.marginLeft = '8px';
-        deleteButton.style.fontSize = '14px';
-        deleteButton.style.border = '1px solid #ccc';
+        deleteButton.style.padding = '2px 8px';
+        deleteButton.style.marginLeft = '10px';
+        deleteButton.style.fontSize = '12px';
+        deleteButton.style.border = '2px solid #ccc';
         deleteButton.onclick = function() {
             listItem.remove();
         };
