@@ -36,13 +36,13 @@ class AvailabilityController extends Controller
 
         foreach($request->time as $times ){
             TimeRecord::create([
-                'availability_id'=> $availabilitiesData->id,
+                'availabilities_id'=> $availabilitiesData->id,
                 'time' => $times,
                 'status' => 1
             ]);
 
         }
-        return redirect()->back()->with('message','Availabilites Created for'. $request->date);
+        return redirect()->back()->with('message', 'Availabilities Created for ' . $request->date);
 
     }
 
