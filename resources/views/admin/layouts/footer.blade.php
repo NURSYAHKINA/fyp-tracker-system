@@ -1,9 +1,3 @@
-<footer class="footer">
-    <div class="w-80 clearfix">
-        <span class="text-center text-sm-left d-md-inline-block">Copyright © 2023 FPTS. All Rights Reserved.</span>
-        <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i class="fa fa-heart text-danger"></i> by CB20162</span>
-    </div>
-</footer>
 
 </div>
 </div>

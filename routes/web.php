@@ -47,13 +47,18 @@ Route::controller(App\Http\Controllers\AvailabilityController::class)->group(fun
 Route::controller(App\Http\Controllers\AppointmentController::class)->group(function () {
     Route::get('createAppointment', 'createAppointment')->name('createAppointment'); //link to go to add appointment page
     Route::get('indexAppointment', 'indexAppointment')->name('indexAppointment'); //link to go to appointment homepage
-    Route::get('viewAppointment', 'viewAppointment')->name('viewAppointment'); //link to go to view list availability
+    Route::get('viewAppointment', 'viewAppointment')->name('viewAppointment'); //link to go to view list appointment
+    Route::post('/storeAppointment', 'storeAppointment')->name('storeAppointment'); //link to store the appointment data to the database
 });
 
 Route::controller(App\Http\Controllers\FeedbackController::class)->group(function () {
-    Route::get('createFeedback', 'createFeedback')->name('createFeedback'); //link to go to add appointment page
+    Route::get('createFeedback', 'createFeedback')->name('createFeedback'); //link to go to add feedback page
+    Route::get('viewFeedback', 'listFeedback')->name('listFeedback'); //link to go to view list availability
+
 });
 
 Route::controller(App\Http\Controllers\ReportController::class)->group(function () {
-    Route::get('createReport', 'createReport')->name('createReport'); //link to go to add appointment page
+    Route::get('createReport', 'createReport')->name('createReport'); //link to go to add report page
+    Route::get('viewReport', 'listReport')->name('listReport'); //link to go to view list availability
+
 });

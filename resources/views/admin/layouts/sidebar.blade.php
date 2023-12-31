@@ -21,7 +21,7 @@
                     <div class="nav-item has-sub">
                         <a href="#"><i class="ik ik-check"></i><span>Availability</span></a>
                         <div class="submenu-content">
-                            <a href="{{ url('createAvailability') }}" class="menu-item">Create</a>
+                            <a href="{{ route('createAvailability') }}" class="menu-item">Create</a>
                             <a href="" class="menu-item">List</a>
                         </div>
                     </div>
@@ -29,8 +29,8 @@
                     <div class="nav-item has-sub">
                         <a href="#"><i class="ik ik-calendar"></i><span>Appointment</span></a>
                         <div class="submenu-content">
-                            <a href="{{ url('indexAppointment') }}" class="menu-item">Index</a>
-                            <a href="{{ url('createAppointment') }}" class="menu-item">Create</a>
+                            <a href="{{ route('indexAppointment') }}" class="menu-item">Index</a>
+                            <a href="{{ route('createAppointment') }}" class="menu-item">Create</a>
                             <a href="#" class="menu-item">List</a>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                     <div class="nav-item has-sub">
                         <a href="#"><i class="ik ik-send"></i><span>Feedback</span></a>
                         <div class="submenu-content">
-                            <a href="{{ url('createFeedback') }}" class="menu-item">Create</a>
+                            <a href="{{ route('createFeedback') }}" class="menu-item">Create</a>
                             <a href="#" class="menu-item">List</a>
                         </div>
                     </div>

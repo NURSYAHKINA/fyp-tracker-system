@@ -1,6 +1,5 @@
 @extends('admin.layouts.master')
 
-
 @section('content')
 <div class="page-header">
     <div class="row align-items-end">
@@ -47,7 +46,8 @@
     @endforeach
 
 
-    <form action="{{route('storeAvailability')}}" method="post">@csrf
+    <form action="{{route('storeAvailability')}}" method="post">
+        @csrf
 
         <div class="card">
             <div class="card-header">

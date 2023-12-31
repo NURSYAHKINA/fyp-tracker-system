@@ -1,3 +1,5 @@
+@include('admin.layouts.master')
+
 <!DOCTYPE html>
 
 <html lang="en">
