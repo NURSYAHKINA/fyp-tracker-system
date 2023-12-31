@@ -36,7 +36,7 @@ class AvailabilityController extends Controller
 
         foreach($request->time as $times ){
             TimeRecord::create([
-                'availabilities_id'=> $availabilitiesData->id,
+                'availability_id'=> $availabilitiesData->id,
                 'time' => $times,
                 'status' => 1
             ]);
