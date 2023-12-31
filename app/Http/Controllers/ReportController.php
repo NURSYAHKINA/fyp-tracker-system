@@ -33,7 +33,7 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function listReport(string $id)
     {
         //
     }
