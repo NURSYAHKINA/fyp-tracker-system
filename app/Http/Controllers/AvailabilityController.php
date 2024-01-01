@@ -15,7 +15,7 @@ class AvailabilityController extends Controller
      */
     public function indexAvailability()
     {
-        $myavailabilities = AvailabilityRecord::latest()->where('user_id',auth()->user()->id)->get();
+        $myavailabilities = AvailabilityRecord::latest()->where('user_id', auth()->user()->id)->get();
         return view('ManageAvailability.IndexAvailabilityPage', ['myavailabilities' => $myavailabilities]);
     }
 
@@ -36,23 +36,21 @@ class AvailabilityController extends Controller
             'date' => 'required|unique:availabilities,date,NULL,id,user_id,' . Auth::id(),
             'time' => 'required'
         ]);
-        
+
 
         $availabilitiesData = AvailabilityRecord::create([
             'user_id' => auth()->user()->id,
             'date' => $request->date
         ]);
 
-        foreach($request->time as $times ){
+        foreach ($request->time as $times) {
             TimeRecord::create([
-                'availabilities_id'=> $availabilitiesData->id,
+                'availabilities_id' => $availabilitiesData->id,
                 'time' => $times,
                 'status' => 1
             ]);
-
         }
         return redirect()->back()->with('message', 'Availabilities Created for ' . $request->date);
-
     }
 
     /**
@@ -89,16 +87,15 @@ class AvailabilityController extends Controller
     public function updateAvailability(Request $request)
     {
         $availabilityId = $request->availabilityId;
-        $availability = TimeRecord::where('availabilities_id',$availabilityId)->delete();
-        foreach($request->time as $time)
-        {
+        $availability = TimeRecord::where('availabilities_id', $availabilityId)->delete();
+        foreach ($request->time as $time) {
             TimeRecord::create([
-                'availabilities_id'=>$availabilityId,
-                'time'=>$time,
-                'status'=>0
+                'availabilities_id' => $availabilityId,
+                'time' => $time,
+                'status' => 0
             ]);
         }
-        return redirect()->route('ManageAvailability.IndexAvailabilityPage')->with('message','Appointment time updated!!');
+        return redirect()->route('ManageAvailability.IndexAvailabilityPage')->with('message', 'Appointment time updated!!');
     }
 
 
@@ -112,16 +109,20 @@ class AvailabilityController extends Controller
 
     public function checkAvailability(Request $request)
     {
-        $date = $request->date;
-        $availability = AvailabilityRecord::where('date',$date)->where('user_id', auth()->user()->id)->first();
+        $request->validate([
+            'date' => 'required|date',
+        ]);
 
-        if(!$availability){
-            return redirect()->to('/availability')->with('errmessage','Appointment time is not available for this date.' );
+        $date = $request->date;
+        $availability = AvailabilityRecord::where('date', $date)->where('user_id', auth()->user()->id)->first();
+
+        if (!$availability) {
+            return redirect()->to('/indexAvailability')->with('errmessage', 'Appointment time is not available for this date.');
         }
 
         $availabilityId = $availability->id;
-        $times = TimeRecord::where('availabilities_id',$availabilityId)->get();
+        $times = TimeRecord::where('availabilities_id', $availabilityId)->get();
 
-        return view ('ManageAvailability.IndexAvailabilityPage',compact('times','availabilityId','date'));
+        return view('ManageAvailability.IndexAvailabilityPage', compact('times', 'availabilityId', 'date'));
     }
 }
