@@ -21,8 +21,8 @@
                     <div class="nav-item has-sub">
                         <a href="#"><i class="ik ik-check"></i><span>Availability</span></a>
                         <div class="submenu-content">
+                            <a href="{{ route('indexAvailability') }}" class="menu-item">List</a>
                             <a href="{{ route('createAvailability') }}" class="menu-item">Create</a>
-                            <a href="" class="menu-item">List</a>
                         </div>
                     </div>
 

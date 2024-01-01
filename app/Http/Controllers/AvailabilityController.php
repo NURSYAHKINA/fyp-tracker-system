@@ -15,6 +15,7 @@ class AvailabilityController extends Controller
      */
     public function indexAvailability()
     {
+        $myavailabilities = AvailabilityRecord::latest()->where('user_id',auth()->user()->id)->get();
         return view('ManageAvailability.IndexAvailabilityPage');
     }
 
@@ -85,10 +86,21 @@ class AvailabilityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateAvailability(Request $request)
     {
-        //
+        $availabilityId = $request->availabilityId;
+        $availability = TimeRecord::where('availabilities_id',$availabilityId)->delete();
+        foreach($request->time as $time)
+        {
+            TimeRecord::create([
+                'availabilities_id'=>$availabilityId,
+                'time'=>$time,
+                'status'=>0
+            ]);
+        }
+        return redirect()->route('ManageAvailability.IndexAvailabilityPage')->with('message','Appointment time updated!!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -110,7 +122,6 @@ class AvailabilityController extends Controller
         $availabilityId = $availability->id;
         $times = TimeRecord::where('availabilities_id',$availabilityId)->get();
 
-        return $times;
         return view ('ManageAvailability.IndexAvailabilityPage',compact('times','availabilityId','date'));
     }
 }
