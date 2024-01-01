@@ -94,7 +94,7 @@
 
 
                     <tbody>
-                    <input type="hidden" name="appoinmentId" value="{{$appointmentId}}">
+                    <input type="hidden" name="availabilityId" value="{{availabilityId}}">
                         <tr>
                             <th scope="row">1</th>
                             <td><input type="checkbox" name="time[]" value="8am" @if(isset($times)){{$times->contains('time','6am')?'checked':''}}@endif> 8am</td>
