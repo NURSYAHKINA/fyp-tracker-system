@@ -16,7 +16,7 @@ class AvailabilityController extends Controller
     public function indexAvailability()
     {
         $myavailabilities = AvailabilityRecord::latest()->where('user_id',auth()->user()->id)->get();
-        return view('ManageAvailability.IndexAvailabilityPage');
+        return view('ManageAvailability.IndexAvailabilityPage', ['myavailabilities' => $myavailabilities]);
     }
 
     /**
