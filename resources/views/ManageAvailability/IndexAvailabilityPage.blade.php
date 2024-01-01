@@ -201,7 +201,7 @@
             <tr>
             
               <th scope="row"></th>
-              <td>{{$availability->supervisor->name}}</td>
+              <td>{{$availability->supervisor}}</td>
               <td>{{$availability->date}}</td>
               <td>
                     <form action="{{route('checkAvailability')}}" method="post">@csrf
