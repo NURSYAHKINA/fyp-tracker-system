@@ -32,25 +32,25 @@
 </div>
 
 <div class="container">
-         @if(Session::has('message'))
-            <div class="alert bg-success alert-success text-white" role="alert">
-                {{Session::get('message')}}
-            </div>
-        @endif
+    @if(Session::has('message'))
+    <div class="alert bg-success alert-success text-white" role="alert">
+        {{Session::get('message')}}
+    </div>
+    @endif
 
-        @if(Session::has('errmessage'))
-            <div class="alert bg-danger alert-success text-white" role="alert">
-                {{Session::get('errmessage')}}
-            </div>
-        @endif
+    @if(Session::has('errmessage'))
+    <div class="alert bg-danger alert-success text-white" role="alert">
+        {{Session::get('errmessage')}}
+    </div>
+    @endif
 
-        @foreach($errors->all() as $error)
-            <div class="alert alert-danger">
-                {{$error}}
-                
-            </div>
-                
-        @endforeach
+    @foreach($errors->all() as $error)
+    <div class="alert alert-danger">
+        {{$error}}
+
+    </div>
+
+    @endforeach
 
 
     <form action="{{route('checkAvailability')}}" method="post">
@@ -61,25 +61,25 @@
                 Choose date
 
                 <br>
-            
-            @if(isset($date))
-                Your timetable for: 
+
+                @if(isset($date))
+                Your timetable for:
                 {{$date}}
-            @endif
+                @endif
             </div>
 
             <div class="card-body">
                 <input type="text" class="form-control datetimepicker-input" id="datepicker" data-toggle="datetimepicker" data-target="#datepicker" name="date">
-            <br>
-            <div style="display: flex; justify-content: flex-start;">
-    <button type="submit" class="btn btn-primary">Check</button>
-</div>
+                <br>
+                <div style="display: flex; justify-content: flex-start;">
+                    <button type="submit" class="btn btn-primary">Check</button>
+                </div>
             </div>
         </div>
     </form>
 
     @if(Route::is('checkAvailability'))
-   <form action="{{route('updateAvailability')}}" method="post">@csrf
+    <form action="{{route('updateAvailability')}}" method="post">@csrf
         <div class="card">
             <div class="card-header">
                 Choose AM time
@@ -94,7 +94,7 @@
 
 
                     <tbody>
-                    <input type="hidden" name="availabilityId" value="{{availabilityId}}">
+                        <input type="hidden" name="availabilityId" value="{{$availabilityId}}">
                         <tr>
                             <th scope="row">1</th>
                             <td><input type="checkbox" name="time[]" value="8am" @if(isset($times)){{$times->contains('time','6am')?'checked':''}}@endif> 8am</td>
@@ -142,32 +142,32 @@
                         <tr>
                             <th scope="row">7</th>
                             <td><input type="checkbox" name="time[]" value="12pm" @if(isset($times)){{$times->contains('time','12.00pm')?'checked':''}}@endif> 12pm</td>
-                            <td><input type="checkbox" name="time[]" value="12.20pm"  @if(isset($times)){{$times->contains('time','12.20pm')?'checked':''}}@endif> 12.20pm</td>
-                            <td><input type="checkbox" name="time[]" value="12.40pm"  @if(isset($times)){{$times->contains('time','11.40am')?'checked':''}}@endif> 12.40pm</td>
+                            <td><input type="checkbox" name="time[]" value="12.20pm" @if(isset($times)){{$times->contains('time','12.20pm')?'checked':''}}@endif> 12.20pm</td>
+                            <td><input type="checkbox" name="time[]" value="12.40pm" @if(isset($times)){{$times->contains('time','11.40am')?'checked':''}}@endif> 12.40pm</td>
                         </tr>
                         <tr>
                             <th scope="row">8</th>
-                            <td><input type="checkbox" name="time[]" value="1pm"  @if(isset($times)){{$times->contains('time','1.00pm')?'checked':''}}@endif> 1pm</td>
-                            <td><input type="checkbox" name="time[]" value="1.20pm"  @if(isset($times)){{$times->contains('time','1.20pm')?'checked':''}}@endif> 1.20pm</td>
-                            <td><input type="checkbox" name="time[]" value="1.40pm"  @if(isset($times)){{$times->contains('time','1.40pm')?'checked':''}}@endif> 1.40pm</td>
+                            <td><input type="checkbox" name="time[]" value="1pm" @if(isset($times)){{$times->contains('time','1.00pm')?'checked':''}}@endif> 1pm</td>
+                            <td><input type="checkbox" name="time[]" value="1.20pm" @if(isset($times)){{$times->contains('time','1.20pm')?'checked':''}}@endif> 1.20pm</td>
+                            <td><input type="checkbox" name="time[]" value="1.40pm" @if(isset($times)){{$times->contains('time','1.40pm')?'checked':''}}@endif> 1.40pm</td>
                         </tr>
                         <tr>
                             <th scope="row">9</th>
-                            <td><input type="checkbox" name="time[]" value="2pm"  @if(isset($times)){{$times->contains('time','2.00pm')?'checked':''}}@endif> 2pm</td>
-                            <td><input type="checkbox" name="time[]" value="2.20pm"  @if(isset($times)){{$times->contains('time','2.20pm')?'checked':''}}@endif> 2.20pm</td>
-                            <td><input type="checkbox" name="time[]" value="2.40pm"  @if(isset($times)){{$times->contains('time','2.40am')?'checked':''}}@endif> 2.40pm</td>
+                            <td><input type="checkbox" name="time[]" value="2pm" @if(isset($times)){{$times->contains('time','2.00pm')?'checked':''}}@endif> 2pm</td>
+                            <td><input type="checkbox" name="time[]" value="2.20pm" @if(isset($times)){{$times->contains('time','2.20pm')?'checked':''}}@endif> 2.20pm</td>
+                            <td><input type="checkbox" name="time[]" value="2.40pm" @if(isset($times)){{$times->contains('time','2.40am')?'checked':''}}@endif> 2.40pm</td>
                         </tr>
                         <tr>
                             <th scope="row">10</th>
-                            <td><input type="checkbox" name="time[]" value="3pm"  @if(isset($times)){{$times->contains('time','3.00pm')?'checked':''}}@endif> 3pm</td>
-                            <td><input type="checkbox" name="time[]" value="3.20pm"  @if(isset($times)){{$times->contains('time','3.20pm')?'checked':''}}@endif> 3.20pm</td>
-                            <td><input type="checkbox" name="time[]" value="3.40pm"  @if(isset($times)){{$times->contains('time','3.40pm')?'checked':''}}@endif> 3.40pm</td>
+                            <td><input type="checkbox" name="time[]" value="3pm" @if(isset($times)){{$times->contains('time','3.00pm')?'checked':''}}@endif> 3pm</td>
+                            <td><input type="checkbox" name="time[]" value="3.20pm" @if(isset($times)){{$times->contains('time','3.20pm')?'checked':''}}@endif> 3.20pm</td>
+                            <td><input type="checkbox" name="time[]" value="3.40pm" @if(isset($times)){{$times->contains('time','3.40pm')?'checked':''}}@endif> 3.40pm</td>
                         </tr>
                         <tr>
                             <th scope="row">11</th>
-                            <td><input type="checkbox" name="time[]" value="4pm"  @if(isset($times)){{$times->contains('time','4.00pm')?'checked':''}}@endif> 4pm</td>
-                            <td><input type="checkbox" name="time[]" value="4.20pm"  @if(isset($times)){{$times->contains('time','4.20pm')?'checked':''}}@endif> 4.20pm</td>
-                            <td><input type="checkbox" name="time[]" value="4.40pm"  @if(isset($times)){{$times->contains('time','4.40pm')?'checked':''}}@endif> 4.40pm</td>
+                            <td><input type="checkbox" name="time[]" value="4pm" @if(isset($times)){{$times->contains('time','4.00pm')?'checked':''}}@endif> 4pm</td>
+                            <td><input type="checkbox" name="time[]" value="4.20pm" @if(isset($times)){{$times->contains('time','4.20pm')?'checked':''}}@endif> 4.20pm</td>
+                            <td><input type="checkbox" name="time[]" value="4.40pm" @if(isset($times)){{$times->contains('time','4.40pm')?'checked':''}}@endif> 4.40pm</td>
                         </tr>
 
 
@@ -183,40 +183,40 @@
 </div>
 </form>
 
-@else 
+@else
 <h3>Your appoinment time list: {{$myavailabilities->count()}}</h3>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Creator</th>
-              <th scope="col">Date</th>
-              <th scope="col">View/Update</th>
-            </tr>
-          </thead>
-          <tbody>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Creator</th>
+            <th scope="col">Date</th>
+            <th scope="col">View/Update</th>
+        </tr>
+    </thead>
+    <tbody>
 
-            @foreach($myavailabilities as $availability)
-            <tr>
-            
-              <th scope="row"></th>
-              <td>{{$availability->supervisor}}</td>
-              <td>{{$availability->date}}</td>
-              <td>
-                    <form action="{{route('checkAvailability')}}" method="post">@csrf
-                        <input type="hidden" name="date" value="{{$availability->date}}">
+        @foreach($myavailabilities as $availability)
+        <tr>
+
+            <th scope="row"></th>
+            <td>{{$availability->supervisor}}</td>
+            <td>{{$availability->date}}</td>
+            <td>
+                <form action="{{route('checkAvailability')}}" method="post">@csrf
+                    <input type="hidden" name="date" value="{{$availability->date}}">
                     <button type="submit" class="btn btn-primary">View/Update</button>
 
 
-                    </form>
+                </form>
 
 
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
 
 
