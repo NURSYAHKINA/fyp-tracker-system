@@ -93,7 +93,7 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Student chart</h3>
+                        <h3>Supervision chart</h3>
                     </div>
                     <div class="card-body">
                         <div id="c3-donut-chart"></div>

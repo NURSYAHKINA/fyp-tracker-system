@@ -210,8 +210,8 @@
                                             <form action="{{ route('deleteAvailability', $availability->id)  }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <a href="{{route('ListAvailability')}}" class="mr-3"><i class="fas fa-eye font-14"></i></a>
-                                                <a href="{{route('updateAvailability')}}" class="mr-2"><i class="fas fa-edit text-primary font-14"></i></a>
+                                                <a href="{{route('viewAvailability',['id' => $availability->id])}})}}" class="mr-3"><i class="fas fa-eye font-14"></i></a>
+                                                <a href="{{route('updateAvailability',['id' => $availability->id])}}" class="mr-2"><i class="fas fa-edit text-primary font-14"></i></a>
                                                 <button type="submit" name="submit" style="border: none; background: none;"><i class="fas fa-trash-alt text-danger font-14"></i></button>
 
                                             </form>

@@ -66,7 +66,7 @@ class AvailabilityController extends Controller
     {
         $availabilityInfo = AvailabilityRecord::with('role')->where('user_id', $id)->get();
 
-        return view('ManageAvailability.AvailabilityListPage', [
+        return view('ManageAvailability.ListAvailabilityPage', [
             'availabilityInfo' => $availabilityInfo,
             'id' => $id,
         ]);
@@ -84,7 +84,7 @@ class AvailabilityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateAvailability(Request $request)
+    public function updateAvailability(Request $request, $id)
     {
         $availabilityId = $request->availabilityId;
         $availability = TimeRecord::where('availabilities_id', $availabilityId)->delete();
