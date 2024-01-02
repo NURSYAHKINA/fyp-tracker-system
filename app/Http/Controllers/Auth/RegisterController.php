@@ -67,7 +67,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         // Retrieve the role (example: retrieving the role by name)
-        $role = Role::where('name', $data['role'],)->first(); 
+        $role = Role::where('name', $data['role'])->first(); 
            // Check if the role exists before creating the user
     if (!$role) {
         // Handle the case where the role does not exist

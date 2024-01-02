@@ -80,9 +80,9 @@
                         <div class="form-group">
                             <select class="form-control" id="role" name="role">
                                 <option value="">Select a role</option>
-                                <option value="1">Student</option>
-                                <option value="2">Supervisor</option>
-                                <option value="3">Coordinator</option>
+                                <option value="Student">Student</option>
+                                <option value="Supervisor">Supervisor</option>
+                                <option value="Coordinator">Coordinator</option>
                             </select>
                             <i class="ik ik-users"></i>
                         </div>
