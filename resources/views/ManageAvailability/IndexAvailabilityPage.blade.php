@@ -77,7 +77,7 @@
     </form>
 
     @if(Route::is('checkAvailability'))
-    <form action="{{route('updateAvailability')}}" method="post">@csrf
+    <form action="{{route('updateAvailability',['id' => $availability->id])}}" method="post">@csrf
         <div class="card">
             <div class="card-header">
                 Choose AM time
@@ -210,7 +210,7 @@
                                             <form action="{{ route('deleteAvailability', $availability->id)  }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <a href="{{route('viewAvailability',['id' => $availability->id])}})}}" class="mr-3"><i class="fas fa-eye font-14"></i></a>
+                                                <a href="{{route('ListAvailability',['id' => $availability->id])}}" class="mr-3"><i class="fas fa-eye font-14"></i></a>
                                                 <a href="{{route('updateAvailability',['id' => $availability->id])}}" class="mr-2"><i class="fas fa-edit text-primary font-14"></i></a>
                                                 <button type="submit" name="submit" style="border: none; background: none;"><i class="fas fa-trash-alt text-danger font-14"></i></button>
 

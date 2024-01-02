@@ -16,7 +16,7 @@ class AvailabilityController extends Controller
     public function indexAvailability()
     {
         $myavailabilities = AvailabilityRecord::latest()->where('user_id', auth()->user()->id)->get();
-        return view('ManageAvailability.IndexAvailabilityPage', ['myavailabilities' => $myavailabilities]);
+        return view('ManageAvailability.IndexAvailabilityPage',compact('myavailabilities'));
     }
 
     /**
@@ -47,7 +47,7 @@ class AvailabilityController extends Controller
             TimeRecord::create([
                 'availabilities_id' => $availabilitiesData->id,
                 'time' => $times,
-                'status' => 1
+                //'status' => 1
             ]);
         }
         return redirect()->back()->with('message', 'Availabilities Created for ' . $request->date);
@@ -59,6 +59,8 @@ class AvailabilityController extends Controller
     public function viewAvailability($id)
     {
         $availabilityData = AvailabilityRecord::find($id);
+
+        return view('ManageAvailability.IndexAvailabilityPage', compact('availabilityData'));
     }
 
 
@@ -87,9 +89,9 @@ class AvailabilityController extends Controller
     public function updateAvailability(Request $request, $id)
     {
         $availabilityId = $request->availabilityId;
-        $availability = TimeRecord::where('availabilities_id', $availabilityId)->delete();
+        $availability = AvailabilityRecord::where('availabilities_id', $availabilityId)->delete();
         foreach ($request->time as $time) {
-            TimeRecord::create([
+            AvailabilityRecord::create([
                 'availabilities_id' => $availabilityId,
                 'time' => $time,
                 'status' => 0
