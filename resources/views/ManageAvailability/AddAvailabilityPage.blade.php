@@ -11,7 +11,6 @@
                 <div class="d-inline">
                     <h5>Supervisors</h5>
                     <span>Available time</span>
-
                 </div>
             </div>
         </div>

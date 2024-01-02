@@ -3,9 +3,9 @@
         <div class="sidebar-header">
             <a class="header-brand" href="#">
                 <div class="logo-img">
-                    <img src="{{ asset('template/src/img/brand.svg')}}" class="header-brand-img">
+                    <img src="{{ asset('template/src/img/fpts.png')}}" class="header-brand-img" style="width: 35px; height: auto;">
                 </div>
-                <span class="text">FPTS</span>
+                <span class="text" style="font-size: 17px;">&nbsp;  FYP Tracker System</span>
             </a>
             <!--<button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>-->
             <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="nav-item has-sub">
-                        <a href="#"><i class="ik ik-send"></i><span>Feedback</span></a>
+                        <a href="#"><i class="ik ik-navigation"></i><span>Feedback</span></a>
                         <div class="submenu-content">
                             <a href="{{ route('createFeedback') }}" class="menu-item">Create</a>
                             <a href="#" class="menu-item">List</a>

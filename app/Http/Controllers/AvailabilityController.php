@@ -95,16 +95,27 @@ class AvailabilityController extends Controller
                 'status' => 0
             ]);
         }
-        return redirect()->route('ManageAvailability.IndexAvailabilityPage')->with('message', 'Appointment time updated!!');
+        return redirect()->route('indexAvailability')->with('message', 'Appointment time updated!!');
     }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteAvailability(string $id)
     {
-        //
+        $AvailabilityRecord = AvailabilityRecord::find($id);
+
+        if (!$AvailabilityRecord) {
+            return redirect()->back()->with('error', 'Availability record not found.');
+        }
+
+        // delete record
+        $AvailabilityRecord->delete();
+        session()->flash('success', 'Availability record deleted successfully.');
+
+        // redirect to previous page
+        return redirect()->back();
     }
 
     public function checkAvailability(Request $request)

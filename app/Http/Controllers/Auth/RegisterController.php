@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\RedirectResponse;
 
 class RegisterController extends Controller
 {
@@ -67,6 +68,14 @@ class RegisterController extends Controller
     {
         // Retrieve the role (example: retrieving the role by name)
         $role = Role::where('name', $data['role'],)->first(); 
+           // Check if the role exists before creating the user
+    if (!$role) {
+        // Handle the case where the role does not exist
+        // You can log an error, redirect back, or return an error message
+        // For example, you can return a redirect to the registration page with an error message:
+        return redirect()->back()->withInput()->withErrors(['role' => 'Invalid role selected']);
+    }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

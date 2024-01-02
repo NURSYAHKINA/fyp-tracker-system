@@ -3,15 +3,12 @@
 @section('content')
 <div class="page-header">
     <div class="row align-items-end">
+        
         <div class="col-lg-8">
-
-
             <div class="page-header-title">
                 <i class="ik ik-watch bg-blue"></i>
                 <div class="d-inline">
-                    <h5>Supervisors</h5>
-                    <span>Available time</span>
-
+                    <h5 style="margin-bottom: 10px;">Available Time Slots</h5>
                 </div>
             </div>
         </div>
@@ -55,11 +52,12 @@
 
     <form action="{{route('checkAvailability')}}" method="post">
         @csrf
+        
+        <span class="d-block mt-2 alert alert-warning" style="width: 370px;"><strong>Reminder:</strong> Kindly to always update your current availability. </span>
 
         <div class="card">
             <div class="card-header">
                 Choose date
-
                 <br>
 
                 @if(isset($date))
@@ -184,40 +182,49 @@
 </form>
 
 @else
-<h3>Your appoinment time list: {{$myavailabilities->count()}}</h3>
+<h3 class="smaller-font">Your appointment time list: {{$myavailabilities->count()}}</h3>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Creator</th>
-            <th scope="col">Date</th>
-            <th scope="col">View/Update</th>
-        </tr>
-    </thead>
-    <tbody>
+    <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive dash-social">
+                            <table id="datatable" class="table">
+                                <thead class="thead-light">
+                                    <tr style="text-align: center;">
+                                        <th>No</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
 
-        @foreach($myavailabilities as $availability)
-        <tr>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    ?>
+                                    @foreach($myavailabilities as $availability)
+                                    <tr style="text-align: center;">
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{$availability->date}}</td>
+                                        <td>
+                                            <form action="{{ route('deleteAvailability', $availability->id)  }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <a href="{{route('ListAvailability')}}" class="mr-3"><i class="fas fa-eye font-14"></i></a>
+                                                <a href="{{route('updateAvailability')}}" class="mr-2"><i class="fas fa-edit text-primary font-14"></i></a>
+                                                <button type="submit" name="submit" style="border: none; background: none;"><i class="fas fa-trash-alt text-danger font-14"></i></button>
 
-            <th scope="row"></th>
-            <td>{{$availability->supervisor}}</td>
-            <td>{{$availability->date}}</td>
-            <td>
-                <form action="{{route('checkAvailability')}}" method="post">@csrf
-                    <input type="hidden" name="date" value="{{$availability->date}}">
-                    <button type="submit" class="btn btn-primary">View/Update</button>
-
-
-                </form>
-
-
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div> <!--end col-->
+        </div><!--end row-->
 
 
 @endif
@@ -231,8 +238,54 @@
     body {
         font-size: 12px;
     }
+
+    .smaller-font {
+        font-size: 14px;
+    }
+
 </style>
 
+<script>
+    $(document).ready(function() {
+        console.log('Document ready');
 
+        $(document).on("click", ".dltData", function(event) {
+            event.preventDefault();
+            var form = $(this).closest('.dltForm');
 
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You want to delete this data!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#fc544b',
+                cancelButtonColor: '$secondary',
+                confirmButtonText: 'Yes, delete it!',
+                dangerMode: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your data has been deleted.',
+                        icon: 'success',
+                        showConfirmButton: true
+                    }).then(() => {
+                        $.ajax({
+                            url: form.attr('action'),
+                            type: 'POST',
+                            data: form.serialize(),
+                            success: function(response) {
+                                console.log(response);
+                                window.location.reload();
+                            },
+                            error: function(xhr) {
+                                console.log(xhr.responseText);
+                            }
+                        });
+                    });
+                }
+            });
+        });
+    });
+        </script>
 @endsection

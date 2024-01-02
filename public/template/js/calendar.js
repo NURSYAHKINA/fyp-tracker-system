@@ -29,7 +29,7 @@ $(document).ready(function(t, e, i) {
             day: "day"
         },
         events: [{
-            title: "All Day Event",
+            title: "Meeting",
             start: new Date(r, n, 1),
             className: "bg-purple"
         }, {
@@ -37,30 +37,13 @@ $(document).ready(function(t, e, i) {
             start: new Date(r, n, i - 5),
             end: new Date(r, n, i - 2),
             className: "bg-yellow"
-        }, {
-            title: "Meeting",
-            start: new Date(r, n, i, 10, 30),
-            allDay: !1,
-            className: "bg-red"
-        }, {
-            title: "Lunch",
-            start: new Date(r, n, i, 12, 0),
-            end: new Date(r, n, i, 14, 0),
-            allDay: !1,
-            className: "bg-navy"
-        }, {
-            title: "Birthday Party",
+        },  {
+            title: "Submission",
             start: new Date(r, n, i + 1, 19, 0),
             end: new Date(r, n, i + 1, 22, 30),
             allDay: !1,
             className: "bg-green"
-        }, {
-            title: "Click for Google",
-            start: new Date(r, n, 28),
-            end: new Date(r, n, 29),
-            url: "http://google.com/",
-            className: "bg-lime"
-        }],
+        }, ],
         editable: !0,
         selectable: !0,
         droppable: !0,

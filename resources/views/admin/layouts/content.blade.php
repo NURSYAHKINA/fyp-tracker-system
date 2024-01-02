@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <!-- All Card -->
-        <div class="row clearfix">
+        <div class="row clearfix justify-content-center" >
 
             <!-- Supervisor Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -10,14 +10,14 @@
                     <div class="widget-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
-                                <h6>Supervisor</h6>
+                                <h6>Student</h6>
                                 <h2>23</h2>
                             </div>
                             <div class="icon">
-                                <i class="ik ik-user-check"></i>
+                                <i class="ik ik-users"></i>
                             </div>
                         </div>
-                        <small class="text-small mt-10 d-block">6% higher than last month</small>
+                        <small class="text-small mt-10 d-block">Registered Student</small>
                     </div>
                 </div>
             </div>
@@ -28,14 +28,14 @@
                     <div class="widget-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
-                                <h6>Student</h6>
-                                <h2>226</h2>
+                                <h6>Feedback</h6>
+                                <h2>5</h2>
                             </div>
                             <div class="icon">
-                                <i class="ik ik-user"></i>
+                                <i class="ik ik-navigation"></i>
                             </div>
                         </div>
-                        <small class="text-small mt-10 d-block">61% higher than last month</small>
+                        <small class="text-small mt-10 d-block">Total feedback</small>
                     </div>
                 </div>
             </div>
@@ -46,14 +46,14 @@
                     <div class="widget-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
-                                <h6>Feedback</h6>
-                                <h2>52</h2>
+                                <h6>Appointment</h6>
+                                <h2>5</h2>
                             </div>
                             <div class="icon">
-                                <i class="ik ik-send"></i>
+                                <i class="ik ik-calendar"></i>
                             </div>
                         </div>
-                        <small class="text-small mt-10 d-block">Total Events</small>
+                        <small class="text-small mt-10 d-block">Total Appointment</small>
                     </div>
                 </div>
             </div>
@@ -65,13 +65,13 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Report</h6>
-                                <h2>23</h2>
+                                <h2>1</h2>
                             </div>
                             <div class="icon">
                                 <i class="ik ik-clipboard"></i>
                             </div>
                         </div>
-                        <small class="text-small mt-10 d-block">Total Comments</small>
+                        <small class="text-small mt-10 d-block">Total Report</small>
                     </div>
                 </div>
             </div>

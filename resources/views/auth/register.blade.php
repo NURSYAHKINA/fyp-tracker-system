@@ -28,14 +28,18 @@
             <div class="col-xl-8 col-lg-6 col-md-5 p-0 d-md-block d-lg-block d-sm-none d-none">
                 <div class="lavalite-bg" style="background-image: url({{ asset('template/img/auth/register-bg.jpg')}})">
                     <div class="lavalite-overlay"></div>
-                </div>
+                </div>  
             </div>
             <div class="col-xl-4 col-lg-2 col-md-7 my-auto p-0">
                 <div class="authentication-form mx-auto">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <h3 style="text-align: center;">FPTS Registration</h3>
+                        <h3 style="text-align: center; display: flex; align-items: center; justify-content: center;">
+                            <img src="{{asset('template/src/img/fpts.png')}}" alt="Logo" style="width: 90px; height: auto; margin-right: 0px;">
+                            <span style="margin-top: 10px;">REGISTRATION</span>
+                        </h3>
+
 
                         <div class="form-group">
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -76,8 +80,9 @@
                         <div class="form-group">
                             <select class="form-control" id="role" name="role">
                                 <option value="">Select a role</option>
-                                <option value="Student">Student</option>
-                                <option value="Supervisor">Supervisor</option>
+                                <option value="1">Student</option>
+                                <option value="2">Supervisor</option>
+                                <option value="3">Coordinator</option>
                             </select>
                             <i class="ik ik-users"></i>
                         </div>

@@ -60,7 +60,7 @@
                                 <div class="notifications-wrap">
                                     <a href="#" class="media">
                                         <span class="d-flex">
-                                            <img src="img/users/1.jpg" class="rounded-circle" alt="">
+                                            <img src="{{asset('template/img/users/2.jpeg')}}" class="rounded-circle" alt="">
                                         </span>
                                     </a>
                                 </div>
@@ -69,7 +69,7 @@
                         <button type="button" class="nav-link ml-10 right-sidebar-toggle"><i class="ik ik-message-square"></i><span class="badge bg-success"></span></button>
 
                         <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="{{asset('template/img/user.jpg')}}" alt=""></a>
+                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"><img class="avatar" src="{{asset('template/img/users/2.jpeg')}}" alt=""></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Profile</a>
                                 <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Settings</a>

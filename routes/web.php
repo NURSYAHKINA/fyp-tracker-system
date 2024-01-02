@@ -45,7 +45,7 @@ Route::controller(AvailabilityController::class)->group(function () {
     Route::post('checkAvailability', 'checkAvailability')->name('checkAvailability'); //link to check the availability data from the database
     Route::post('updateAvailability', 'updateAvailability')->name('updateAvailability'); //link to update the availability data from the database
     Route::get('viewAvailability', 'ListAvailability')->name('ListAvailability'); //link to go to view list availability
-
+    Route::delete('deleteAvailability/{id}', 'deleteAvailability')->name('deleteAvailability'); //link to delete the data from the database
 });
 
 Route::controller(AppointmentController::class)->group(function () {
