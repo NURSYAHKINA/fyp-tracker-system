@@ -44,7 +44,7 @@ Route::controller(AvailabilityController::class)->group(function () {
     Route::post('/storeAvailability', 'storeAvailability')->name('storeAvailability'); //link to store the availability data to the database
     Route::post('checkAvailability', 'checkAvailability')->name('checkAvailability'); //link to check the availability data from the database
     Route::post('updateAvailability', 'updateAvailability')->name('updateAvailability'); //link to update the availability data from the database
-    Route::get('viewAvailability', 'ListAvailability')->name('ListAvailability'); //link to go to view list availability
+    Route::get('viewAvailability/{id}', 'ListAvailability')->name('ListAvailability'); //link to go to view list availability
     Route::delete('deleteAvailability/{id}', 'deleteAvailability')->name('deleteAvailability'); //link to delete the data from the database
 });
 
