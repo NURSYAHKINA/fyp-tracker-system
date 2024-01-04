@@ -7,8 +7,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ReportController;
-
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +42,9 @@ Route::controller(AvailabilityController::class)->group(function () {
     Route::get('createAvailability', 'createAvailability')->name('createAvailability'); //link to go to add availability page
     Route::post('/storeAvailability', 'storeAvailability')->name('storeAvailability'); //link to store the availability data to the database
     Route::post('checkAvailability', 'checkAvailability')->name('checkAvailability'); //link to check the availability data from the database
-    Route::post('updateAvailability/{id}', 'updateAvailability')->name('updateAvailability'); //link to update the availability data from the database
-    Route::get('viewAvailability/{id}', 'ListAvailability')->name('ListAvailability'); //link to go to view list availability
+    Route::post('updateAvailability', 'updateAvailability')->name('updateAvailability'); //link to update the availability data from the database
+    //Route::get('viewAvailability/{id}', 'ListAvailability')->name('ListAvailability'); //link to go to view list availability
+    //Route::get('ListAvailable/{id}', 'ListAvailability')->name('ListAvailability'); //link to go to view list availability
     Route::delete('deleteAvailability/{id}', 'deleteAvailability')->name('deleteAvailability'); //link to delete the data from the database
 });
 
@@ -65,4 +65,13 @@ Route::controller(ReportController::class)->group(function () {
     Route::get('createReport', 'createReport')->name('createReport'); //link to go to add report page
     Route::get('viewReport', 'listReport')->name('listReport'); //link to go to view list availability
 
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/dashboardCount', 'count')->name('count'); //To count 
+    Route::get('/List_User', 'ListUser')->name('ListUser'); //link to view list of users
+    Route::delete('deleteUser/{id}', 'App\Http\Controllers\UserController@deleteUser')->name('deleteUser'); //link to delete the data from the database
+    Route::get('viewUser/{id}', 'viewUser')->name('viewUser'); //link to go to edit page
+    Route::get('editUser/{id}', 'editUser')->name('editUser'); //link to go to edit page
+    Route::put('updateUser/{id}', 'App\Http\Controllers\UserController@updateUser')->name('updateUser'); //link to update the data in the database
 });

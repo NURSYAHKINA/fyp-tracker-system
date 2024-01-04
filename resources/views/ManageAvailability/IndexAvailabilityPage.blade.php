@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-header">
     <div class="row align-items-end">
-        
+
         <div class="col-lg-8">
             <div class="page-header-title">
                 <i class="ik ik-watch bg-blue"></i>
@@ -52,7 +52,7 @@
 
     <form action="{{route('checkAvailability')}}" method="post">
         @csrf
-        
+
         <span class="d-block mt-2 alert alert-warning" style="width: 370px;"><strong>Reminder:</strong> Kindly to always update your current availability. </span>
 
         <div class="card">
@@ -77,7 +77,7 @@
     </form>
 
     @if(Route::is('checkAvailability'))
-    <form action="{{route('updateAvailability',['id' => $availability->id])}}" method="post">@csrf
+    <form action="{{route('updateAvailability')}}" method="post">@csrf
         <div class="card">
             <div class="card-header">
                 Choose AM time
@@ -101,21 +101,21 @@
                         </tr>
 
                         <tr>
-                            <th scope="row">4</th>
+                            <th scope="row">2</th>
                             <td><input type="checkbox" name="time[]" value="9am" @if(isset($times)){{$times->contains('time','9am')?'checked':''}}@endif> 9am</td>
                             <td><input type="checkbox" name="time[]" value="9.20am" @if(isset($times)){{$times->contains('time','9.20am')?'checked':''}}@endif> 9.20am</td>
                             <td><input type="checkbox" name="time[]" value="9.40am" @if(isset($times)){{$times->contains('time','9.40am')?'checked':''}}@endif> 9.40am</td>
                         </tr>
 
                         <tr>
-                            <th scope="row">5</th>
+                            <th scope="row">3</th>
                             <td><input type="checkbox" name="time[]" value="10am" @if(isset($times)){{$times->contains('time','10am')?'checked':''}}@endif> 10am</td>
                             <td><input type="checkbox" name="time[]" value="10.20am" @if(isset($times)){{$times->contains('time','10.20am')?'checked':''}}@endif> 10.20am</td>
                             <td><input type="checkbox" name="time[]" value="10.40am" @if(isset($times)){{$times->contains('time','10.40am')?'checked':''}}@endif> 10.40am</td>
                         </tr>
 
                         <tr>
-                            <th scope="row">6</th>
+                            <th scope="row">4</th>
                             <td><input type="checkbox" name="time[]" value="11am" @if(isset($times)){{$times->contains('time','11am')?'checked':''}}@endif> 11am</td>
                             <td><input type="checkbox" name="time[]" value="11.20am" @if(isset($times)){{$times->contains('time','11.20am')?'checked':''}}@endif> 11.20am</td>
                             <td><input type="checkbox" name="time[]" value="11.40am" @if(isset($times)){{$times->contains('time','11.40am')?'checked':''}}@endif> 11.40am</td>
@@ -138,31 +138,31 @@
 
                     <tbody>
                         <tr>
-                            <th scope="row">7</th>
+                            <th scope="row">5</th>
                             <td><input type="checkbox" name="time[]" value="12pm" @if(isset($times)){{$times->contains('time','12.00pm')?'checked':''}}@endif> 12pm</td>
                             <td><input type="checkbox" name="time[]" value="12.20pm" @if(isset($times)){{$times->contains('time','12.20pm')?'checked':''}}@endif> 12.20pm</td>
                             <td><input type="checkbox" name="time[]" value="12.40pm" @if(isset($times)){{$times->contains('time','11.40am')?'checked':''}}@endif> 12.40pm</td>
                         </tr>
                         <tr>
-                            <th scope="row">8</th>
+                            <th scope="row">6</th>
                             <td><input type="checkbox" name="time[]" value="1pm" @if(isset($times)){{$times->contains('time','1.00pm')?'checked':''}}@endif> 1pm</td>
                             <td><input type="checkbox" name="time[]" value="1.20pm" @if(isset($times)){{$times->contains('time','1.20pm')?'checked':''}}@endif> 1.20pm</td>
                             <td><input type="checkbox" name="time[]" value="1.40pm" @if(isset($times)){{$times->contains('time','1.40pm')?'checked':''}}@endif> 1.40pm</td>
                         </tr>
                         <tr>
-                            <th scope="row">9</th>
+                            <th scope="row">7</th>
                             <td><input type="checkbox" name="time[]" value="2pm" @if(isset($times)){{$times->contains('time','2.00pm')?'checked':''}}@endif> 2pm</td>
                             <td><input type="checkbox" name="time[]" value="2.20pm" @if(isset($times)){{$times->contains('time','2.20pm')?'checked':''}}@endif> 2.20pm</td>
                             <td><input type="checkbox" name="time[]" value="2.40pm" @if(isset($times)){{$times->contains('time','2.40am')?'checked':''}}@endif> 2.40pm</td>
                         </tr>
                         <tr>
-                            <th scope="row">10</th>
+                            <th scope="row">8</th>
                             <td><input type="checkbox" name="time[]" value="3pm" @if(isset($times)){{$times->contains('time','3.00pm')?'checked':''}}@endif> 3pm</td>
                             <td><input type="checkbox" name="time[]" value="3.20pm" @if(isset($times)){{$times->contains('time','3.20pm')?'checked':''}}@endif> 3.20pm</td>
                             <td><input type="checkbox" name="time[]" value="3.40pm" @if(isset($times)){{$times->contains('time','3.40pm')?'checked':''}}@endif> 3.40pm</td>
                         </tr>
                         <tr>
-                            <th scope="row">11</th>
+                            <th scope="row">9</th>
                             <td><input type="checkbox" name="time[]" value="4pm" @if(isset($times)){{$times->contains('time','4.00pm')?'checked':''}}@endif> 4pm</td>
                             <td><input type="checkbox" name="time[]" value="4.20pm" @if(isset($times)){{$times->contains('time','4.20pm')?'checked':''}}@endif> 4.20pm</td>
                             <td><input type="checkbox" name="time[]" value="4.40pm" @if(isset($times)){{$times->contains('time','4.40pm')?'checked':''}}@endif> 4.40pm</td>
@@ -181,53 +181,54 @@
 </div>
 </form>
 
-@else
 <h3 class="smaller-font">Your appointment time list: {{$myavailabilities->count()}}</h3>
 
-    <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive dash-social">
-                            <table id="datatable" class="table">
-                                <thead class="thead-light">
-                                    <tr style="text-align: center;">
-                                        <th>No</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive dash-social">
+                    <table id="datatable" class="table">
+                        <thead class="thead-light">
+                            <tr style="text-align: center;">
+                                <th>No</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
 
-                                <tbody>
-                                    <?php
-                                    $no = 1;
-                                    ?>
-                                    @foreach($myavailabilities as $availability)
-                                    <tr style="text-align: center;">
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{$availability->date}}</td>
-                                        <td>
-                                            <form action="{{ route('deleteAvailability', $availability->id)  }}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <a href="{{route('ListAvailability',['id' => $availability->id])}}" class="mr-3"><i class="fas fa-eye font-14"></i></a>
-                                                <a href="{{route('updateAvailability',['id' => $availability->id])}}" class="mr-2"><i class="fas fa-edit text-primary font-14"></i></a>
-                                                <button type="submit" name="submit" style="border: none; background: none;"><i class="fas fa-trash-alt text-danger font-14"></i></button>
+                        <tbody>
+                            <?php
+                            $no = 1;
+                            ?>
 
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div><!--end card-body-->
-                </div><!--end card-->
-            </div> <!--end col-->
-        </div><!--end row-->
+                            @foreach($myavailabilities as $availability)
+                            <tr style="text-align: center;">
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $availability->date }}</td>
+                                <td>
+                                    <form action="{{ route('deleteAvailability', $availability->id)  }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a href="{{route('ListAvailability',['id' => $availability->id])}}" class="mr-3"><i class="fas fa-eye font-14"></i></a>
+                                        <a href="{{route('updateAvailability',['id' => $availability->id])}}" class="mr-2"><i class="fas fa-edit text-primary font-14"></i></a>
+                                        <button type="submit" name="submit" style="border: none; background: none;"><i class="fas fa-trash-alt text-danger font-14"></i></button>
 
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @else
+                            <p>No availabilities found.</p>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div> <!--end col-->
+</div><!--end row-->
 
-@endif
 
 <style type="text/css">
     input[type="checkbox"] {
@@ -242,50 +243,6 @@
     .smaller-font {
         font-size: 14px;
     }
-
 </style>
 
-<script>
-    $(document).ready(function() {
-        console.log('Document ready');
-
-        $(document).on("click", ".dltData", function(event) {
-            event.preventDefault();
-            var form = $(this).closest('.dltForm');
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You want to delete this data!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#fc544b',
-                cancelButtonColor: '$secondary',
-                confirmButtonText: 'Yes, delete it!',
-                dangerMode: true,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Your data has been deleted.',
-                        icon: 'success',
-                        showConfirmButton: true
-                    }).then(() => {
-                        $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: form.serialize(),
-                            success: function(response) {
-                                console.log(response);
-                                window.location.reload();
-                            },
-                            error: function(xhr) {
-                                console.log(xhr.responseText);
-                            }
-                        });
-                    });
-                }
-            });
-        });
-    });
-        </script>
 @endsection

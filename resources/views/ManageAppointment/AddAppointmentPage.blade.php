@@ -103,12 +103,12 @@
                                     <textarea class="form-control" id="w3review" name="w3review" rows="4" cols="50" placeholder="Enter purpose"></textarea>
                                 </div>
                             </div>
-                </div>
+                    </div>
 
-                <div class="card-body" style="display: flex; justify-content: flex-end;">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-</form>
+                    <div class="card-body" style="display: flex; justify-content: flex-end;">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+    </form>
 </div>
 
 @endsection
