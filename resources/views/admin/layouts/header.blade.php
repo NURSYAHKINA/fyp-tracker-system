@@ -76,7 +76,7 @@ $user = auth()->user();
                                 @if(Auth::user()->role_id == 1)
                                 Coordinator
                                 @elseif(Auth::user()->role_id == 2)
-                                Supervisor
+                                Onyenye
                                 @elseif(Auth::user()->role_id == 3)
                                 Student
                                 @endif
