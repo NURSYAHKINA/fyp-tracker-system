@@ -46,7 +46,7 @@
     @endforeach
 
 
-    <form action="{{route('storeAvailability')}}" method="post">
+    <form action="{{route('storeAppointment')}}" method="post">
         @csrf
 
         <div class="row">
@@ -58,18 +58,19 @@
 
                     <div class="card-body">
                         <form class="forms-sample">
-
+                            @if(Auth::user()->role_id == 3)
                             <div class="form-group row">
                                 <label for="date" class="col-sm-2 col-form-label">Date:</label>
                                 <div class="col-sm-9">
                                     <select name="user_id" class="form-control border-primary" id="user_id" required>
                                         <option disabled value="" selected hidden>Select</option>
-                                        @foreach($listData['employee'] as $employees)
-                                        <option value="{{ $employees->id }}">{{ $employees->name }}</option>
+                                        @foreach($listData['availability'] as $availabilities)
+                                        <option value="{{ $availabilities->id }}">{{ $availabilities->date }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+                            @endif
 
                             <div class="form-group row">
                                 <label for="time" class="col-sm-2 col-form-label">Time:</label>

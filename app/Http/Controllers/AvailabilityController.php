@@ -56,23 +56,25 @@ class AvailabilityController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function viewAvailability($id)
-    // {
-    //     // $availabilityData = AvailabilityRecord::find($id);
+    public function viewAvailability($id)
+    {
+          $availabilityData = AvailabilityRecord::find($id);
 
-    //     // return view('ManageAvailability.IndexAvailabilityPage',compact('availabilityData'));
-    // }
+          return view('ManageAvailability.IndexAvailabilityPage',compact('availabilityData'));
+    }
 
 
-    // public function ListAvailability($id)
-    // {
-    //     // $availabilityInfo = AvailabilityRecord::with('role')->where('user_id', $id)->get();
+    public function ListAvailability($id)
+    {
+        $availabilityInfo = AvailabilityRecord::with('role')->where('user_id', $id)->get();
 
-    //     // return view('ManageAvailability.ListAvailabilityPage', [
-    //     //     'availabilityInfo' => $availabilityInfo,
-    //     //     'id' => $id,
-    //     // ]);
-    // }
+        return view('ManageAvailability.ListAvailabilityPage', [
+
+        'availabilityInfo' => $availabilityInfo,
+        'id' => $id,
+        
+        ]);
+}
 
 
     /**

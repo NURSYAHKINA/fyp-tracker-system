@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class AppointmentRecord extends Model
 {
     use HasFactory;
+
+    protected $table = "appointments";
+
+    protected $fillable = [
+        'user_id',
+        'date',
+        'time',
+        'purpose',
+        'status',
+    ];
+
+    public function userType()
+    {
+        return $this->belongsTo(UserRecord::class, 'user_id');
+    }
+
 }

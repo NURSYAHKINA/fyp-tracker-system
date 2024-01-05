@@ -24,4 +24,9 @@ class UserRecord extends Model
 
         return $this->belongsTo(UserRecord::class);
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'position_id');
+    }
 }

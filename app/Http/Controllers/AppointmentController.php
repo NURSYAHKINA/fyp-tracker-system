@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\AppointmentRecord;
 use App\Models\AvailabilityRecord;
+use App\Models\NotificationRecord;
+use App\Models\Role;
+use App\Models\UserRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,15 +18,15 @@ class AppointmentController extends Controller
      */
     public function indexAppointment()
     {
-        $availability = AvailabilityRecord::all();
-        $appointment = AppointmentRecord::all();
-
-        $lists =[
-            'availability' => $availability,
-            'appointment' => $appointment,
+        $user = UserRecord::with('userType')->get();
+        $role = Role::all();
+        $lists = [
+            'user' => $user,
+            'role' => $role,
         ];
 
-        return view('ManageAppointment.AddAppointmentPage', ["listData" => $lists]);
+        dd($lists);
+        return view('ManageAppointment.ListAppointmentPage', ["listData" => $lists]);
     }
 
     /**
@@ -39,7 +42,26 @@ class AppointmentController extends Controller
      */
     public function storeAppointment(Request $request)
     {
-        //
+        // Determine the user ID based on role_id
+        $userId = auth()->user()->role_id == 3 ? $request->user_id : auth()->user()->id;
+
+        // Store a new claim record
+        $newAppointment = AppointmentRecord::create([
+            'userId' => $userId,
+            'date' => $request->date,
+            'time' => $request->end_time,
+            'purpose' => $request->purpose,
+            'status' => 0,
+
+        ]);
+
+        NotificationRecord::create([
+            'user_id' => $userId,
+            'noti_type' => 1,
+            'noti_text' => "has book an appointment",
+        ]);
+
+        return redirect()->route('indexAppointment');
     }
 
     /**
@@ -47,40 +69,92 @@ class AppointmentController extends Controller
      */
     public function viewAppointment(string $id)
     {
-        $post = AppointmentRecord::all();
+            $appointmentInfo = AppointmentRecord::find($id);
+            $userInfo = UserRecord::all(); // Fetch user from the database
 
-        return view(
-
-            'ManageAppointment.ListAppointmentPage',
-            compact('post')
-
-
-        );
+            return view('ManageAppointment.ViewAppointmentPage', compact('appointmentInfo', 'userInfo'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    //go to edit appointment page
+    public function editAppointment(string $id)
     {
-        //
+            $userInfo = UserRecord::all(); // Fetch user from the database
+           
+            return view('ManageAppointment.EditAppointmentPage', compact('userInfo'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+//update function
+    public function updateAppointment(Request $request, string $id)
     {
-        //
+         // Update appointment info from the database
+         $updateInfo = AppointmentRecord::findOrFail($id);
+
+         $validatedData = $request->validate([
+            'roleID' => 'roleID',
+            'date' => 'date',
+            'time' => 'time',
+            'purpose' => 'purpose',
+         ]);
+
+         $updateInfo->update($validatedData);
+        return redirect()->route('ListAppointment')->with('success', 'Appointment details updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteAppointment(string $id)
     {
-        DB::delete('delete from appointments where id = ?', [$id]);
+        $AppointmentRecord = AppointmentRecord::find($id);
 
+        if (!$AppointmentRecord) {
+            return redirect()->back()->with('error', 'Appointment record not found.');
+        }
+
+        // delete record
+        $AppointmentRecord->delete();
+        session()->flash('success', 'Appointment record deleted successfully.');
+
+        // redirect to previous page
         return redirect()->back();
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        // Find the Appointment by ID
+        $AppointmentRecord = AppointmentRecord::find($id);
+
+        if (!$AppointmentRecord) {
+            // AppointmentRecord not found
+            return response()->json(['message' => 'Claim not found'], 404);
+        }
+
+        // Update the status
+        $AppointmentRecord->status = 1; // 
+        $AppointmentRecord->save();
+
+        // Return a response indicating the successful update
+        return response()->json(['message' => 'Status updated successfully']);
+    }
+
+    // Update status to reject
+    public function updateStatusReject(Request $request, $id)
+    {
+        // Find the AppointmentRecord by ID
+        $AppointmentRecord = AppointmentRecord::find($id);
+
+        if (!$AppointmentRecord) {
+            // AppointmentRecord not found
+            return response()->json(['message' => 'Appoointment not found'], 404);
+        }
+
+        // Update the status
+        $AppointmentRecord->status = 2; // 
+        $AppointmentRecord->save();
+
+        // Return a response indicating the successful update
+        return response()->json(['message' => 'Status updated successfully']);
+    }
+
+
 }

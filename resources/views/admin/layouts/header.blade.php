@@ -70,16 +70,19 @@ $user = auth()->user();
                             <div class="d-sm-none d-lg-inline-block ml-2"> 
                                 @if(Auth::user()->role_id == 1)
                                 Coordinator
+
                                 @elseif(Auth::user()->role_id == 2)
                                 Supervisor
+
                                 @elseif(Auth::user()->role_id == 3)
                                 Student
                                 @endif
-                                | {{ Auth::user()->users_name }}
+
+                                | {{ Auth::user()->user_name }}
                             </div>
+
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Profile</a>
-                                <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Settings</a>
+                                <a class="dropdown-item" href="{{route('editUser' , ['id' => $user->id])}}"><i class="ik ik-user dropdown-icon"></i> Profile</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <i class="ik ik-power dropdown-icon"></i>{{ __('Logout') }}

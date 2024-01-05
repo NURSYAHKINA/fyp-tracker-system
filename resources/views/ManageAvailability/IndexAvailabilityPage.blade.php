@@ -181,6 +181,7 @@
 </div>
 </form>
 
+@else
 <h3 class="smaller-font">Your appointment time list: {{$myavailabilities->count()}}</h3>
 
 <div class="row">
@@ -218,7 +219,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                            @else
+                          
                             <p>No availabilities found.</p>
                             @endif
                         </tbody>

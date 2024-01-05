@@ -44,7 +44,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-md-3 label-control">Password</label>
                                                         <div class="col-md-9 mx-auto">
-                                                            <input class="form-control border-primary" type="password" placeholder="Password" name="password" id="password" value="{{ old('password', $userInfo->password) }}" >
+                                                            <input class="form-control border-primary" type="password" placeholder="Password" name="password" id="password" value="{{ old('password', $userInfo->password) }}" disabled>
                                                         </div>
                                                     </div>
                                                 </div>
