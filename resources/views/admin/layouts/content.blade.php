@@ -1,7 +1,6 @@
+@include('admin.layouts.master')
 <div class="main-content">
     <div class="container-fluid">
-@include('admin.layouts.master')
-
         <!-- All Card -->
         <div class="row clearfix justify-content-center">
 
