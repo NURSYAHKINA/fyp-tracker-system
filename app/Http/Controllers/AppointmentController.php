@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AppointmentRecord;
+use App\Models\AvailabilityRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,9 +15,15 @@ class AppointmentController extends Controller
      */
     public function indexAppointment()
     {
-        //$appointment = AppointmentRecord::all();
-        return view('ManageAppointment.HomeAppointmentPage'//, ["appointment" => $appointment]
-    );
+        $availability = AvailabilityRecord::all();
+        $appointment = AppointmentRecord::all();
+
+        $lists =[
+            'availability' => $availability,
+            'appointment' => $appointment,
+        ];
+
+        return view('ManageAppointment.AddAppointmentPage', ["listData" => $lists]);
     }
 
     /**

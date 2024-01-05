@@ -28,7 +28,7 @@ class AvailabilityController extends Controller
     
         if ($user->role_id == 2) {
             $leaveType = LeaveTypeRecord::all();
-        } 
+        }   
         
         else {
             $userId = $user->id;

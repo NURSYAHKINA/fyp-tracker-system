@@ -62,11 +62,11 @@
                             <div class="form-group row">
                                 <label for="date" class="col-sm-2 col-form-label">Date:</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="times">
-                                        <option value="">Choose Date</option>
-                                        <option value="female">26/12/2023</option>
-                                        <option value="other">27/12/2023</option>
-                                        <option value="other">1/1/2024</option>
+                                    <select name="user_id" class="form-control border-primary" id="user_id" required>
+                                        <option disabled value="" selected hidden>Select</option>
+                                        @foreach($listData['employee'] as $employees)
+                                        <option value="{{ $employees->id }}">{{ $employees->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
