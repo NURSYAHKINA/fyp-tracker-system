@@ -1,27 +1,36 @@
-@include('admin.layouts.master')
-<div class="main-content">
+@ -2,36 +2,36 @@
     <div class="container-fluid">
+
         <!-- All Card -->
+        <div class="row clearfix justify-content-center" >
         <div class="row clearfix justify-content-center">
 
+            <!-- Supervisor Card -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
          <!-- Users Card -->
          <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="widget">
                     <div class="widget-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
+                                <h6>Student</h6>
+                                <h2>23</h2>
                                 <h6>Total Users</h6>
                             </div>
+                            <div class="icon">
+                                <i class="ik ik-users"></i>
                             <!--Display total users-->
                             <div class="icon" id="total-user">
                                 <i class="fas fa-thin fa-users"></i>
                             </div>
                         </div>
+                        <small class="text-small mt-10 d-block">Registered Student</small>
                         <small class="text-small mt-10 d-block">Registered Users</small>
                     </div>
                 </div>
             </div>
 
+            <!-- Student Card -->
 
             <!-- Feedback Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -30,22 +39,18 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Feedback</h6>
+                                <h2>5</h2>
                             </div>
+                            <div class="icon">
                             <div class="icon" id="total-feedback">
                                 <i class="ik ik-navigation"></i>
                             </div>
                         </div>
-                        <small class="text-small mt-10 d-block">Total feedback</small>
-    <div class="row clearfix justify-content-center">
-        <div class="col-md-8"> <!-- Adjust column size as needed -->
-            <div class="card">
-                <div class="card-body" style="position: absolute;"> <!-- Center the content -->
-                    <div id='calendar' class="mx-auto"> <!-- Apply mx-auto to center the calendar -->
-                        <!-- Calendar content goes here -->
-                    </div>
+@ -40,16 +40,15 @@
                 </div>
             </div>
 
+            <!-- Feedback Card -->
             <!-- Appointment Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="widget">
@@ -53,53 +58,29 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Appointment</h6>
+                                <h2>5</h2>
                             </div>
+                            <div class="icon">
                             <div class="icon" id="total-appointment">
                                 <i class="ik ik-calendar"></i>
                             </div>
                         </div>
-                        <small class="text-small mt-10 d-block">Total Appointment</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Report Card -->
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget">
-                    <div class="widget-body">
+@ -65,9 +64,8 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Report</h6>
+                                <h2>1</h2>
                             </div>
+                            <div class="icon">
                             <div class="icon" id="total-report">
                                 <i class="ik ik-clipboard"></i>
                             </div>
                         </div>
-                        <small class="text-small mt-10 d-block">Total Report</small>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row clearfix">
-            <!-- Calendar Card -->
-            <div class="col-md-7">
-                <div class="card">
-                    <div class="card-body">
-                        <div id='calendar'>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Donut Chart -->
-            <div class="col-md-5">
-                <div class="card">
-                    <div class="card-header">
+@ -96,11 +94,38 @@
                         <h3>Supervision chart</h3>
                     </div>
                     <div class="card-body">
+                        <div id="c3-donut-chart"></div>
                         <div id="c3-donut-chart" id="myChart"></div>
                     </div>
                 </div>
@@ -107,6 +88,7 @@
         </div>
 
     </div>
+</div>
 </div>
 
 <script>
@@ -135,18 +117,3 @@
 
     });
 </script>
-
-    <div class="row clearfix justify-content-center">
-        <div class="col-md-8"> <!-- Adjust column size as needed -->
-            <div class="card">
-                <div class="card-body" style="position: absolute;"> <!-- Center the content -->
-                    <div id='calendar' class="mx-auto"> <!-- Apply mx-auto to center the calendar -->
-                        <!-- Calendar content goes here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
