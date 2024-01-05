@@ -1,3 +1,7 @@
+@php
+$user = auth()->user();
+@endphp
+
 <!doctype html>
 <html class="no-js" lang="en">
 
