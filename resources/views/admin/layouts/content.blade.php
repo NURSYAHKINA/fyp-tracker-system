@@ -8,7 +8,7 @@ $user = auth()->user();
         <!-- All Card -->
         <div class="row clearfix justify-content-center">
 
-        @if($user->role_id === 1 || $user->role_id === 2)
+            @if($user->role_id === 1 || $user->role_id === 2)
             <!-- Student Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="widget">
@@ -87,7 +87,7 @@ $user = auth()->user();
             <div class="row clearfix justify-content-center">
                 <div class="row clearfix">
                     <!-- Empty space to the left (occupies 2 columns) -->
-                    <div class="col-md-2"></div>
+                    <div class="col-md-1"></div>
 
                     <!-- Calendar Card -->
                     <div class="col-md-7">
@@ -101,6 +101,7 @@ $user = auth()->user();
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>
