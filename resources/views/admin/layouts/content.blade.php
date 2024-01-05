@@ -1,4 +1,3 @@
-@ -2,36 +2,36 @@
     <div class="container-fluid">
 
         <!-- All Card -->
@@ -46,7 +45,6 @@
                                 <i class="ik ik-navigation"></i>
                             </div>
                         </div>
-@ -40,16 +40,15 @@
                 </div>
             </div>
 
@@ -65,7 +63,6 @@
                                 <i class="ik ik-calendar"></i>
                             </div>
                         </div>
-@ -65,9 +64,8 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Report</h6>
@@ -76,7 +73,6 @@
                                 <i class="ik ik-clipboard"></i>
                             </div>
                         </div>
-@ -96,11 +94,38 @@
                         <h3>Supervision chart</h3>
                     </div>
                     <div class="card-body">
