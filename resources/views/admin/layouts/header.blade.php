@@ -1,7 +1,3 @@
-@php
-$user = auth()->user();
-@endphp
-
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -47,12 +43,16 @@ $user = auth()->user();
                 <div class="d-flex justify-content-between">
                     <div class="top-menu d-flex align-items-center">
                         <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
-                        <nav class="navbar navbar-expand-lg main-navbar">
-                        <form class="form-inline mr-auto">
-                            <ul class="navbar-nav mr-3">
-                                <li><a href="#" data-turbolinks="false" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-                            </ul>
-                        </form>
+
+                        <div class="header-search">
+                            <div class="input-group">
+                                <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-addon search-btn"><i class="ik ik-search"></i></span>
+                            </div>
+                        </div>
+
+                        <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
                     </div>
                     <div class="top-menu d-flex align-items-center">
                         <div class="dropdown">
@@ -72,15 +72,15 @@ $user = auth()->user();
 
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"><img class="avatar" src="{{asset('template/img/users/2.jpeg')}}" alt=""></a>
-                            <div class="d-sm-none d-lg-inline-block ml-2">
+                            <div class="d-sm-none d-lg-inline-block ml-2"> 
                                 @if(Auth::user()->role_id == 1)
                                 Coordinator
-                                @elseif(Auth::user()->role_id == 2)
-                                Onyenye
-                                @elseif(Auth::user()->role_id == 3)
+                                @elseif(Auth::user()->role_id_id == 2)
+                                Supervisor
+                                @elseif(Auth::user()->role_id_id == 3)
                                 Student
                                 @endif
-                                | {{ Auth::user()->name }}
+                                | {{ Auth::user()->roles_name }}
                             </div>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Profile</a>
@@ -95,7 +95,7 @@ $user = auth()->user();
                                              </form>
                             </div>
                         </div>
-</nav>
+
                     </div>
                 </div>
             </div>
