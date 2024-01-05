@@ -75,9 +75,9 @@
                             <div class="d-sm-none d-lg-inline-block ml-2"> 
                                 @if(Auth::user()->role_id == 1)
                                 Coordinator
-                                @elseif(Auth::user()->role_id_id == 2)
+                                @elseif(Auth::user()->role_id == 2)
                                 Supervisor
-                                @elseif(Auth::user()->role_id_id == 3)
+                                @elseif(Auth::user()->role_id == 3)
                                 Student
                                 @endif
                                 | {{ Auth::user()->roles_name }}
