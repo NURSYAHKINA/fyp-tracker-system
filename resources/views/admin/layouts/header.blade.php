@@ -80,7 +80,7 @@
                                 @elseif(Auth::user()->role_id == 3)
                                 Student
                                 @endif
-                                | {{ Auth::user()->role_name }}
+                                | {{ Auth::user()->users_name }}
                             </div>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Profile</a>
