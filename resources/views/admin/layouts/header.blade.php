@@ -37,9 +37,6 @@ $user = auth()->user();
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
     <div class="wrapper">
         <header class="header-top" header-theme="light">
@@ -49,11 +46,7 @@ $user = auth()->user();
                         <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
 
                         <div class="header-search">
-                            <div class="input-group">
-                                <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-addon search-btn"><i class="ik ik-search"></i></span>
-                            </div>
+                            <div class="input-group"></div>
                         </div>
 
                         <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
