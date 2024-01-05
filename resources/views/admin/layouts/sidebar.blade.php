@@ -3,7 +3,7 @@ $user = auth()->user();
 @endphp
 
 <div class="page-wrap">
-    <div class="app-sidebar colored">
+    <div class="app-sidebar">
         <div class="sidebar-header" style="background-color:white;">
             <a class="header-brand" href="#">
                 <div class="logo-img">
