@@ -48,8 +48,6 @@ $user = auth()->user();
                         <div class="header-search">
                             <div class="input-group"></div>
                         </div>
-
-                        <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
                     </div>
                     <div class="top-menu d-flex align-items-center">
                         <div class="dropdown">
