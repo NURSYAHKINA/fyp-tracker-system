@@ -108,6 +108,21 @@ class UserController extends Controller
     
     }
 
+    public function updateAvatar(Request $request)
+    {
+
+        $user = Auth::user();
+
+        $avatarName = $user->id . '.' . request()->avatar->getClientOriginalExtension();
+
+        $request->avatar->move(public_path('uploads'), $avatarName);
+        $user->avatar = $avatarName;
+        User::where('id', '=', $user->id)->update(['picture' => $avatarName]);
+
+        return back()
+            ->with('success', 'You have successfully upload image.');
+    }
+
 
     /**
      * Remove the specified resource from storage.

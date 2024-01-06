@@ -53,9 +53,7 @@ class AvailabilityController extends Controller
         return redirect()->back()->with('message', 'Availabilities Created for ' . $request->date);
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function viewAvailability($id)
     {
           $availabilityData = AvailabilityRecord::find($id);
@@ -77,17 +75,6 @@ class AvailabilityController extends Controller
 }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function updateAvailability(Request $request)
     {
         $availabilityId = $request->availabilityId;
@@ -96,10 +83,10 @@ class AvailabilityController extends Controller
             TimeRecord::create([
                 'availabilities_id' => $availabilityId,
                 'time' => $time,
-                //'status' => 0
+                'status' => 0
             ]);
         }
-        return redirect()->route('IndexAvailabilityPage')->with('message', 'Appointment time updated!!');
+        return redirect()->route('indexAvailability')->with('message', 'Appointment time updated!!');
     }
 
 

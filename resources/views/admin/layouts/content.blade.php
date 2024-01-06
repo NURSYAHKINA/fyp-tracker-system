@@ -28,6 +28,26 @@ $user = auth()->user();
             </div>
             @endif
 
+            @if($user->role_id === 1)
+            <!-- Supervisor Card -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>Supervisor</h6>
+                                <h2>{{App\Models\UserRecord::where('role_id',3)->count()}}</h2>
+                                <small class="text-small mt-10 d-block">Registered Supervisor</small>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-solid fa-user-tie"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <!-- Appointment Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="widget">
@@ -46,6 +66,7 @@ $user = auth()->user();
                 </div>
             </div>
 
+            @if($user->role_id === 2 || $user->role_id === 3)
             <!-- Supervisor Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <!-- Users Card -->
@@ -64,6 +85,7 @@ $user = auth()->user();
                     </div>
                 </div>
             </div>
+            @endif
 
             <!-- Supervisor Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -88,7 +110,6 @@ $user = auth()->user();
                 <div class="row clearfix">
                     <!-- Empty space to the left (occupies 2 columns) -->
                     <div class="col-md-1"></div>
-
                     <!-- Calendar Card -->
                     <div class="col-md-7">
                         <div class="card">
@@ -105,25 +126,4 @@ $user = auth()->user();
 
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            // Fetch the total number of appointment, report, student, supervisor, feedback using AJAX
-            $.ajax({
-                url: "{{ route('count') }}", // Replace with your route URL
-                method: 'GET',
-                success: function(response) {
-                    // Update the HTML with the respective counts
-                    $('#total-user').html('<i class="fas fa-thin fa-users"></i> ' + response.totalUsers);
-                    $('#total-feedback').html('<i class="ik ik-navigation"></i> ' + response.totalFeedback);
-                    $('#total-appointment').html('<i class="ik ik-calendar"></i> ' + response.totalAppointment);
-                    $('#total-report').html('<i class="ik ik-clipboard"></i> ' + response.totalReport);
-                },
-                error: function() {
-                    // Handle errors if any
-                    // You might want to handle errors here appropriately
-                    console.error('Error fetching data.');
-                }
-            });
-        });
-    </script>
+</div>

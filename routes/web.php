@@ -49,7 +49,7 @@ Route::controller(AvailabilityController::class)->group(function () {
 });
 
 Route::controller(AppointmentController::class)->group(function () {
-    Route::get('createAppointment', 'createAppointment')->name('createAppointment'); //link to go to add appointment page
+    // Route::get('createAppointment', 'createAppointment')->name('createAppointment'); //link to go to add appointment page
     Route::get('indexAppointment', 'indexAppointment')->name('indexAppointment'); //link to go to appointment homepage
     Route::get('viewAppointment/{id}', 'viewAppointment')->name('viewAppointment'); //link to go to view list appointment
     Route::post('/storeAppointment', 'storeAppointment')->name('storeAppointment'); //link to store the appointment data to the database
@@ -58,6 +58,9 @@ Route::controller(AppointmentController::class)->group(function () {
     Route::delete('deleteAppointment/{id}', 'deleteAppointment')->name('deleteAppointment'); //link to delete the data from the database
     Route::post('/updateAppointmentStatus/{id}', 'updateStatus')->name('updateStatus'); //update approve status
     Route::post('/updateAppointmentStatusReject/{id}', 'updateStatusReject')->name('updateStatusReject'); //update approve status
+    Route::post('/appointmentdata', 'appointmentdata')->name('appointmentdata');
+    Route::get('/AddAppointment', 'AddAppointment')->name('AddAppointment');
+
 });
 
 Route::controller(FeedbackController::class)->group(function () {
@@ -78,5 +81,7 @@ Route::controller(UserController::class)->group(function () {
     Route::delete('deleteUser/{id}', 'App\Http\Controllers\UserController@deleteUser')->name('deleteUser'); //link to delete the data from the database
     Route::get('viewUser/{id}', 'viewUser')->name('viewUser'); //link to go to edit page
     Route::get('editUser/{id}', 'editUser')->name('editUser'); //link to go to edit page
+    Route::post('/updateAvatar', 'updateAvatar')->name('updateAvatar');
+    Route::post('/updatePassword', 'updatePassword')->name('updatePassword');
     Route::put('updateUser/{id}', 'App\Http\Controllers\UserController@updateUser')->name('updateUser'); //link to update the data in the database
 });
