@@ -1,90 +1,76 @@
 @extends('admin.layouts.master')
 
-<div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <!--begin::Tab-->
-                        <div class="tab-pane show active px-7" id="kt_user_edit_tab_1" role="tabpanel">
-                            <!--begin::Row-->
-                            <div class="card-header">
-                                <h1 class="card-title"><i class="fas fa-user">&nbsp;&nbsp;&nbsp;</i>User Information</h1>
-                            </div>
-                            <hr>
-                            <div class="card-content collpase show">
-                                <div class="card-body">
-                                    <form method="POST" class="form form-horizontal" action="{{route('updateUser' , ['id' => $userInfo->id])}}" id="updateForm">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="form-body">
-                                            <h4 class="form-section"><i class="fas fa-file-alt">&nbsp;&nbsp;&nbsp;</i>Users Details</h4>
-                                            <br>
-                                            <hr>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control">Full Name</label>
-                                                        <div class="col-md-9 mx-auto">
-                                                            <input type="text" class="form-control border-primary" placeholder="Full Name" id="name" name="name" value="{{ old('name', $userInfo->name) }}" >
-                                                        </div>
-                                                    </div>
+
+@section('content')
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="tab-pane show active px-7" id="kt_user_edit_tab_1" role="tabpanel">
+                    <div class="card-header">
+                        <h1 class="card-title"><i class="fas fa-user">&nbsp;&nbsp;&nbsp;</i>User Information</h1>
+                    </div>
+                    <hr>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form method="POST" class="form form-horizontal" action="{{route('updateUser' , ['id' => $userInfo->id])}}" id="updateForm">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-body">
+                                    <h4 class="form-section"><i class="fas fa-file-alt">&nbsp;&nbsp;&nbsp;</i>Users Details</h4>
+                                    <br>
+                                    <hr>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control">Full Name</label>
+                                                <div class="col-md-9 mx-auto">
+                                                    <input type="text" class="form-control border-primary" placeholder="Full Name" id="name" name="name" value="{{ old('name', $userInfo->name) }}">
                                                 </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control">Email</label>
-                                                        <div class="col-md-9 mx-auto">
-                                                            <input class="form-control border-primary" type="email" placeholder="Email" name="email" id="email" value="{{ old('email', $userInfo->email) }}" >
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control">Password</label>
-                                                        <div class="col-md-9 mx-auto">
-                                                            <input class="form-control border-primary" type="password" placeholder="Password" name="password" id="password" value="{{ old('password', $userInfo->password) }}" disabled>
-                                                        </div>
-                                                    </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control">Email</label>
+                                                <div class="col-md-9 mx-auto">
+                                                    <input class="form-control border-primary" type="email" placeholder="Email" name="email" id="email" value="{{ old('email', $userInfo->email) }}">
                                                 </div>
                                             </div>
                                         </div>
-                                        <h4 class="form-section"><i class="fas fa-calendar-alt">&nbsp;&nbsp;&nbsp;</i>User Details</h4>
-                                        <br>
-                                        <hr>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 label-control">User Type</label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <select name="role_id" class="form-control border-primary" id="role_id"     >
-                                                            <option value="1" {{ old('role_id', $userInfo->role_id) == '1' ? 'selected' : '' }}>Coordinator</option>
-                                                            <option value="2" {{ old('role_id', $userInfo->role_id) == '2' ? 'selected' : '' }}>Supervisor</option>
-                                                            <option value="3" {{ old('role_id', $userInfo->role_id) == '3' ? 'selected' : '' }}>Student</option>
-                                                        </select>
-                                                    </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control">Password</label>
+                                                <div class="col-md-9 mx-auto">
+                                                    <input class="form-control border-primary" type="password" placeholder="Password" name="password" id="password" value="{{ old('password', $userInfo->password) }}" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control">User Type</label>
+                                                <div class="col-md-9 mx-auto">
+                                                    <select name="role_id" class="form-control border-primary" id="role_id">
+                                                        <option value="1" {{ old('role_id', $userInfo->role_id) == '1' ? 'selected' : '' }}>Coordinator</option>
+                                                        <option value="2" {{ old('role_id', $userInfo->role_id) == '2' ? 'selected' : '' }}>Supervisor</option>
+                                                        <option value="3" {{ old('role_id', $userInfo->role_id) == '3' ? 'selected' : '' }}>Student</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <hr>
-                                        <br>
-                                        <div class="form-actions text-center">
-                                            <button class="btn btn-primary float-md-right" id="updateButton">Update</button>
-                                        </div>
-                                    </form>
+                                    </div>
+                                    <hr>
+                                    <div class="form-actions text-center">
+                                        <button class="btn btn-primary float-md-right" id="updateButton">Update</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                </div><!--end card-body-->
-            </div><!--end card-->
-        </div> <!--end col-->
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <script>
+
+<script>
     $(document).ready(function() {
         $("#updateButton").click(function(event) {
             event.preventDefault(); // Prevent the default form submission
@@ -128,3 +114,4 @@
         });
     });
 </script>
+@endsection

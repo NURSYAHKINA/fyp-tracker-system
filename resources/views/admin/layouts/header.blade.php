@@ -78,7 +78,7 @@ $user = auth()->user();
                                 Student
                                 @endif
 
-                                | {{ Auth::user()->user_name }}
+                                | {{ Auth::user()->name }}
                             </div>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
