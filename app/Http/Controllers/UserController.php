@@ -12,6 +12,8 @@ use App\Models\AvailabilityRecord;
 use App\Models\TimeRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 
@@ -35,6 +37,25 @@ class UserController extends Controller
         }
 
         return view('ManageUser.UserList', ["listUser" => $lists]);
+    }
+
+    public function index()
+    { 
+        $UserRecord = DB::table('users')
+            ->select(
+                'id',
+                'name',
+                'id_matric',
+                'email',
+                'password',
+                'user_category',
+                'user_majoring',
+                'picture',
+            )
+
+            ->orderBy('name', 'asc')
+            ->get();
+        return view('ManageUser.UserList', compact('UserRecord'));
     }
 
     

@@ -68,7 +68,7 @@ $user = auth()->user();
                         <button type="button" class="nav-link ml-10 right-sidebar-toggle"><i class="ik ik-message-square"></i><span class="badge bg-success"></span></button>
 
                         <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"><img class="avatar" src="{{asset('public/uploads/'. Auth::user()->picture)}}" alt="User Avatar"></a>
+                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"><img class="avatar" src="{{asset('uploads/'. Auth::user()->picture)}}" alt="User Avatar"></a>
                             <div class="d-sm-none d-lg-inline-block ml-2"> 
                                 @if(Auth::user()->role_id == 1)
                                 Coordinator

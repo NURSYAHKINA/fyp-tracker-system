@@ -123,6 +123,7 @@ $user = auth()->user();
                 </div>
             </div>
 
+            @if($user->role_id === 3)
             <!--Progress Tracker-->
             <div class="d-flex justify-content-center">
                 <div class="card" style="max-width: 310px;">
@@ -131,6 +132,7 @@ $user = auth()->user();
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>
