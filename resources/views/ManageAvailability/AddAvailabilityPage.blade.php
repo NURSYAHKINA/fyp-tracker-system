@@ -5,8 +5,6 @@
     <div class="row align-items-end">
         
         <div class="col-lg-8">
-
-
             <div class="page-header-title">
                 <i class="ik ik-watch bg-blue"></i>
                 <div class="d-inline">

@@ -43,7 +43,7 @@
     @endforeach
 
 
-    <form action="{{route('storeAvailability')}}" method="post">
+    <form action="{{ route('storeFeedback')}}" method="post">
         @csrf
 
         <div class="row">
@@ -58,19 +58,31 @@
                         <form class="forms-sample">
 
                             <div class="form-group row">
-                                <label for="date" class="col-sm-3 col-form-label">Choose your student:</label>
+                                <label for="date" class="col-sm-3 col-form-label">Choose your student</label>
                                 <div class="col-sm-8">
                                     <select class="form-control" id="times">
-                                        <option value="">Choose Student</option>
-                                        <option value="female">NURSYAHKINA BINTI OTHAMAN</option>
-                                        <option value="other">MUHAMMAD ARIF BIN MAT DAUD</option>
-                                        <option value="other">MUHAMMAD TAUFIQ BIN JASLAN</option>
+                                        <option value="" selected >Choose Student</option>
+                                        @foreach($users as $data)
+                                        <option value="{{ $data }}">{{ $data }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="rate_satisfaction" class="col-sm-3 col-form-label">Rate satisfaction:</label>
+                                <label for="date" class="col-sm-3 col-form-label">Choose Date</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="times">
+                                        <option value="" selected >Choose Appointment</option>
+                                        @foreach($appointments as $data)
+                                        <option value="{{ $data }}">{{ $data }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="rate_satisfaction" class="col-sm-3 col-form-label">Rate satisfaction</label>
                                 <div class="col-sm-8">
                                     <select class="form-control" id="rate_satisfaction">
                                         <option value="">Select satisfaction level</option>
@@ -85,7 +97,7 @@
 
 
                             <div class="form-group row">
-                                <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Give your feedback/suggestion:</label>
+                                <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Give your feedback/suggestion</label>
                                 <div class="col-sm-8">
                                     <textarea class="form-control" id="w3review" name="w3review" rows="4" cols="50" placeholder=""></textarea>
                                 </div>

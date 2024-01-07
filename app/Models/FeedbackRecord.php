@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class FeedbackRecord extends Model
 {
-    use HasFactory;
+    protected $table = "feedbacks";
+
+    protected $fillable = [
+        'id',
+        'id_matric',
+        'name',
+        'rating',
+        'comment',
+        'user_id',
+        'date',
+    ];
 }

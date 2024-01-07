@@ -2,8 +2,12 @@
 $user = auth()->user();
 @endphp
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 <div class="main-content">
     <div class="container-fluid">
+
 
         <!-- All Card -->
         <div class="row clearfix justify-content-center">
@@ -36,7 +40,7 @@ $user = auth()->user();
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Supervisor</h6>
-                                <h2>{{App\Models\UserRecord::where('role_id',3)->count()}}</h2>
+                                <h2>{{App\Models\UserRecord::where('role_id',2)->count()}}</h2>
                                 <small class="text-small mt-10 d-block">Registered Supervisor</small>
                             </div>
                             <div class="icon">
@@ -55,7 +59,7 @@ $user = auth()->user();
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Appointment</h6>
-                                <h2>{{App\Models\UserRecord::where('role_id',3)->count()}}</h2>
+                                <h2>{{App\Models\AppointmentRecord::where('id->user_id')->count()}}</h2>
                                 <small class="text-small mt-10 d-block">All appointment</small>
                             </div>
                             <div class="icon">
@@ -75,7 +79,7 @@ $user = auth()->user();
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Feedback</h6>
-                                <h2>{{App\Models\UserRecord::where('role_id',3)->count()}}</h2>
+                                <h2>{{App\Models\FeedbackRecord::where('id_matric')->count()}}</h2>
                                 <small class="text-small mt-10 d-block">All Feedback</small>
                             </div>
                             <div class="icon">
@@ -95,7 +99,7 @@ $user = auth()->user();
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Report</h6>
-                                <h2>{{App\Models\UserRecord::where('role_id',3)->count()}}</h2>
+                                <h2>{{App\Models\ReportRecord::where('user_id')->count()}}</h2>
                                 <small class="text-small mt-10 d-block">All report</small>
                             </div>
                             <div class="icon">
@@ -105,25 +109,72 @@ $user = auth()->user();
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="row clearfix justify-content-center">
-                <div class="row clearfix">
-                    <!-- Empty space to the left (occupies 2 columns) -->
-                    <div class="col-md-1"></div>
-                    <!-- Calendar Card -->
-                    <div class="col-md-7">
-                        <div class="card">
-                            <div class="card-body">
-                                <div id='calendar'>
-                                    <!-- Your calendar content here -->
-                                </div>
-                            </div>
-                        </div>
+        <div class="row mt-4">
+            <div class="col-md-0"></div> <!-- Occupies 2 columns -->
+
+            <!-- Calendar Card -->
+            <div class="col-md-8 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div id='calendar'></div>
                     </div>
                 </div>
             </div>
 
-
+            <!--Progress Tracker-->
+            <div class="d-flex justify-content-center">
+                <div class="card" style="max-width: 310px;">
+                    <div class="card-body">
+                        <canvas id="appointmentChart" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the count of appointments
+        var appointmentCount = {{App\Models\AppointmentRecord::count()}};
+
+        // Set the minimum appointments required
+        var minimumAppointments = 10;
+
+        // Calculate the progress percentage
+        var progressPercentage = (appointmentCount / minimumAppointments) * 100;
+
+        // Initialize the Chart.js
+        var ctx = document.getElementById('appointmentChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Milestones', 'Remaining'],
+                datasets: [{
+                    data: [appointmentCount, Math.max(0, minimumAppointments - appointmentCount)],
+                    backgroundColor: [
+                        '#36a2eb', // Appointments color
+                        '#eaeaea' // Remaining color
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutoutPercentage: 70,
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: `Appointments Progress (${progressPercentage}%)`,
+                    fontSize: 16,
+                    padding: 20
+                }
+            }
+        });
+    });
+</script>

@@ -53,6 +53,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'id_matric' => ['required', 'string', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -66,23 +67,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // Retrieve the role (example: retrieving the role by name)
-        $role = Role::where('name', $data['role'])->first(); 
-           // Check if the role exists before creating the user
-    if (!$role) {
-        // Handle the case where the role does not exist
-        // You can log an error, redirect back, or return an error message
-        // For example, you can return a redirect to the registration page with an error message:
-        return redirect()->back()->withInput()->withErrors(['role' => 'Invalid role selected']);
-    }
+        $role = Role::where('name', $data['role'])->first();
 
-        return User::create([
+        $userData = [
             'name' => $data['name'],
+            'id_matric' => $data['id_matric'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role_id' => $role->id,
             'user_majoring' => $data['user_majoring'],
-            'user_category' => $data['user_category']
-        ]);
+            'user_category' => $data['user_category'],
+            'picture' => $data['picture'] ?? 'default_picture.jpg', // Set a default value
+        ];
+
+        if (isset($data['picture'])) {
+            $userData['picture'] = $data['picture'];
+        }
+
+        return User::create($userData);
     }
 }

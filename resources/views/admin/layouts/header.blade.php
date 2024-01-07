@@ -41,17 +41,19 @@ $user = auth()->user();
     <div class="wrapper">
         <header class="header-top" header-theme="light">
             <div class="container-fluid">
+
                 <div class="d-flex justify-content-between">
                     <div class="top-menu d-flex align-items-center">
-                        <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
-
+                        <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"></button>
                         <div class="header-search">
                             <div class="input-group"></div>
                         </div>
                     </div>
+
+                    <div class="d-flex justify-content-between">
                     <div class="top-menu d-flex align-items-center">
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-bell"></i><span class="badge bg-danger"></span></a>
+                            <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-bell"></i></a>
                             <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
                                 <h4 class="header">Notifications</h4>
                                 <div class="notifications-wrap">
@@ -66,7 +68,7 @@ $user = auth()->user();
                         <button type="button" class="nav-link ml-10 right-sidebar-toggle"><i class="ik ik-message-square"></i><span class="badge bg-success"></span></button>
 
                         <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"><img class="avatar" src="{{asset('template/img/users/2.jpeg')}}" alt=""></a>
+                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"><img class="avatar" src="{{asset('public/uploads/'. Auth::user()->picture)}}" alt="User Avatar"></a>
                             <div class="d-sm-none d-lg-inline-block ml-2"> 
                                 @if(Auth::user()->role_id == 1)
                                 Coordinator

@@ -21,8 +21,6 @@ class AppointmentController extends Controller
      */
     public function indexAppointment()
     {
-    
-
         $currID = Auth::user()->id;
 
         $AppointmentRecord = DB::table('appointments')
@@ -68,11 +66,7 @@ class AppointmentController extends Controller
         $purpose = $request->input('purpose');
         $user_id = $currUser;
 
-
-
-
         $data = array(
-
 
             'date' => $date,
             'time' => $time,
@@ -85,33 +79,6 @@ class AppointmentController extends Controller
         DB::table('appointments')->insert($data);
         return back()->with('success', 'Job successfully added');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function storeAppointment(Request $request)
-    // {
-    //     // Determine the user ID based on role_id
-    //     $userId = auth()->user()->role_id == 3 ? $request->user_id : auth()->user()->id;
-
-    //     // Store a new claim record
-    //     $newAppointment = AppointmentRecord::create([
-    //         'userId' => $userId,
-    //         'date' => $request->date,
-    //         'time' => $request->end_time,
-    //         'purpose' => $request->purpose,
-    //         'status' => 0,
-
-    //     ]);
-
-    //     NotificationRecord::create([
-    //         'user_id' => $userId,
-    //         'noti_type' => 1,
-    //         'noti_text' => "has book an appointment",
-    //     ]);
-
-    //     return redirect()->route('indexAppointment');
-    // }
 
     /**
      * Display the specified resource.
@@ -194,7 +161,7 @@ class AppointmentController extends Controller
 
         if (!$AppointmentRecord) {
             // AppointmentRecord not found
-            return response()->json(['message' => 'Appoointment not found'], 404);
+            return response()->json(['message' => 'Appointment not found'], 404);
         }
 
         // Update the status

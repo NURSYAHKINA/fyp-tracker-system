@@ -12,12 +12,16 @@ class UserRecord extends Model
     protected $table="users";
 
     protected $fillable = [
+        'id',
         'name',
+        'id_matric',
         'email',
         'password',
         'role_id',
         'user_majoring',
-        'user_category'
+        'user_category',
+        'picture',
+        'status',
     ];
 
     public function userType(){
@@ -27,6 +31,6 @@ class UserRecord extends Model
 
     public function role()
     {
-        return $this->belongsTo(Role::class, 'position_id');
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }

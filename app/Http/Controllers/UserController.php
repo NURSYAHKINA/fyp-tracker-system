@@ -39,24 +39,6 @@ class UserController extends Controller
 
     
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $user = Auth::user(); // Assuming you are using Laravel's authentication
-    
-        if ($user->role_id == 2) {
-        } 
-        
-        else {
-            $userId = $user->id;
-            $employee = UserRecord::with('userType')->where('id', $userId)->get();
-        }
-    
-        return view('ManageAvailability.AddAvailabilityPage');
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -96,9 +78,14 @@ class UserController extends Controller
         $updateInfo = UserRecord::findOrFail($id);
         $validatedData = $request->validate([
             'name' => 'required',
+            'id_matric' => 'required',
             'email' => 'required',
             'password' => 'required',
             'role_id' => 'required',
+            'user_category' => 'required',
+            'user_majoring' => 'required',
+            'picture' => 'required',
+
         ]);
 
         $validatedData['password'] = Hash::make($request->password);
@@ -148,7 +135,7 @@ class UserController extends Controller
     {
         // Check if the user is an coordinator (role_id == 1) 
         if (auth()->user()->role_id == 1) {
-            // Retrieve the total number of employees from the database
+            // Retrieve the total number of users from the database
             $totalUsers = UserRecord::count();
 
             // Retrieve the total number of feedback with status 0
@@ -157,7 +144,7 @@ class UserController extends Controller
             // Retrieve the total number of appointment with status 1
             $totalAppointment = AppointmentRecord::where('status', 1)->count();
 
-            // Retrieve the total number of appointment with status 1
+            // Retrieve the total number of report with status 1
             $totalReport = ReportRecord::where('status', 1)->count();
         } else {
 
@@ -180,4 +167,20 @@ class UserController extends Controller
         }
     
 }
+
+public function updatePassword(Request $request)
+{
+
+    $user = Auth::user();
+
+
+    User::where('id', '=', $user->id)->update([
+
+        'users.password' => Hash::make($request->password),
+
+    ]);
+    return back()
+        ->with('success', 'You have successfully change password.');
+}
+
 }

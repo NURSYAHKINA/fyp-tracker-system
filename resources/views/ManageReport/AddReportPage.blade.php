@@ -43,7 +43,7 @@
     @endforeach
 
 
-    <form action="{{route('storeAvailability')}}" method="post">
+    <form action="{{route('storeReport')}}" method="post">
         @csrf
 
         <div class="row">
@@ -60,10 +60,10 @@
                                 <label for="date" class="col-sm-3 col-form-label">Choose your student:</label>
                                 <div class="col-sm-8">
                                     <select class="form-control" id="times">
-                                        <option value="">Choose Student</option>
-                                        <option value="female">NURSYAHKINA BINTI OTHAMAN</option>
-                                        <option value="other">MUHAMMAD ARIF BIN MAT DAUD</option>
-                                        <option value="other">MUHAMMAD TAUFIQ BIN JASLAN</option>
+                                        <option value="" selected>Choose Student</option>
+                                        @foreach($users as $data)
+                                        <option value="{{ $data }}">{{ $data }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -72,25 +72,17 @@
                                 <label for="rate_satisfaction" class="col-sm-3 col-form-label">Choose Feedback:</label>
                                 <div class="col-sm-8">
                                     <select class="form-control" id="rate_satisfaction">
-                                        <option value="">---------------------------------</option>
-                                        <option value="5">All the updated report has followed the rubric</option>
-                                        <option value="4">All the updated report has followed the rubric 2</option>
-                                        <option value="3">All the updated report has followed the rubric 3</option>
-                                        <option value="2">All the updated report has followed the rubric 4</option>
-                                        <option value="1">All the updated report has followed the rubric 5</option>
+                                        <option value="" selected>Choose added feedback</option>
+                                        @foreach($feedbacks as $data)
+                                        <option value="{{ $data }}">{{ $data }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
 
-                            <!-- New div to display selected feedback -->
-                           <!-- New div to display selected feedback -->
-                           <div class="form-group row">
-                                <label for="selected_feedback" class="col-sm-3 col-form-label">Selected Feedback:</label>
-                                <div class="col-sm-8">
-                                    <ul id="feedbackList"></ul>
-                                </div>
+                            <div id="selectedFeedback" class="mt-4">
+                                <!-- This div will display the selected feedback -->
                             </div>
-
                     </div>
 
                     <div class="card-body" style="display: flex; justify-content: flex-end;">
@@ -99,32 +91,13 @@
     </form>
 </div>
 
-<!-- JavaScript for displaying selected feedback -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    var selectElement = document.getElementById('rate_satisfaction');
-    var feedbackList = document.getElementById('feedbackList');
-
-    selectElement.addEventListener('change', function() {
-        var selectedValue = selectElement.options[selectElement.selectedIndex].text;
-        var listItem = document.createElement('li');
-        listItem.textContent = selectedValue;
-
-        var deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Remove';
-        deleteButton.style.padding = '2px 8px';
-        deleteButton.style.marginLeft = '10px';
-        deleteButton.style.fontSize = '12px';
-        deleteButton.style.border = '2px solid #ccc';
-        deleteButton.onclick = function() {
-            listItem.remove();
-        };
-
-        listItem.appendChild(deleteButton);
-        feedbackList.appendChild(listItem);
+    $(document).ready(function() {
+        $('#rate_satisfaction').change(function() {
+            var selectedFeedback = $(this).val();
+            $('#selectedFeedback').html(`<p>Selected Feedback: ${selectedFeedback}</p>`);
+        });
     });
 </script>
-
-
-
-
 @endsection

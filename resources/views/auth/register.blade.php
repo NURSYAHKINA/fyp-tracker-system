@@ -1,3 +1,7 @@
+@php
+$user = auth()->user();
+@endphp
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -24,14 +28,16 @@
 
 <div class="auth-wrapper">
     <div class="container-fluid h-100">
+
         <div class="row flex-row h-100 bg-white">
-            <div class="col-xl-8 col-lg-6 col-md-5 p-0 d-md-block d-lg-block d-sm-none d-none">
+            <div class="col-lg-8 col-md-7 col-sm-12 p-0">
+
                 <div class="lavalite-bg" style="background-image: url({{asset('template/img/auth/bg.jpg')}})">
                     <div class="lavalite-overlay"></div>
-                </div>  
+                </div>
             </div>
-            <div class="col-xl-4 col-lg-2 col-md-7 my-auto p-0">
-                <div class="authentication-form mx-auto">
+            <div class="col-lg-4 col-md-5 col-sm-12 my-auto p-0">
+                <div class="authentication-form mx-auto" style="padding: 10px;">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -50,6 +56,17 @@
                             </span>
                             @enderror <i class="ik ik-user"></i>
                         </div>
+
+                        <div class="form-group">
+                            <input id="id_matric" type="text" class="form-control @error('id_matric') is-invalid @enderror" placeholder="ID Matric" name="id_matric" value="{{ old('id_matric') }}" required autocomplete="id_matric" autofocus>
+
+                            @error('id_matric')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror <i class="ik ik-book-open"></i>
+                        </div>
+
                         <div class="form-group">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email">
 
@@ -59,6 +76,7 @@
                             </span>
                             @enderror <i class="ik ik-at-sign"></i>
                         </div>
+
                         <div class="form-group">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="new-password">
 
@@ -68,6 +86,7 @@
                             </span>
                             @enderror <i class="ik ik-lock"></i>
                         </div>
+
                         <div class="form-group">
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
                             @error('password-confirm')
@@ -75,30 +94,31 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                            <i class="ik ik-eye-off"></i>
+                            <i class="ik ik-lock"></i>
                         </div>
+
                         <div class="form-group">
-                            <select class="form-control" id="role" name="role">
+                            <select class="form-control" id="role" name="role" onchange="toggleFields()">
                                 <option value="">Select a role</option>
                                 <option value="Student">Student</option>
                                 <option value="Supervisor">Supervisor</option>
-                                <option value="Coordinator">Coordinator</option>
+                                <!-- <option value="Coordinator">Coordinator</option> -->
                             </select>
                             <i class="ik ik-users"></i>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="userMajoringField" style="display: none;">
                             <select class="form-control" id="user_majoring" name="user_majoring">
                                 <option value="">Select your majoring</option>
-                                <option value="bcs">DCS</option>
+                                <option value="dcs">DCS</option>
                                 <option value="bcs">BCS</option>
                                 <option value="bcn">BCN</option>
                                 <option value="bcg">BCG</option>
                             </select>
-                            <i class="ik ik-users"></i>
+                            <i class=""></i>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="userCategoryField" style="display: none;">
                             <select class="form-control" id="user_category" name="user_category">
                                 <option value="">Select your category</option>
                                 <option value="pta1">PTA 1</option>
@@ -106,7 +126,7 @@
                                 <option value="psm1">PSM 1</option>
                                 <option value="psm2">PSM 2</option>
                             </select>
-                            <i class="ik ik-users"></i>
+                            <i class=""></i>
                         </div>
 
                         <div class="sign-btn text-center">
@@ -123,6 +143,26 @@
     </div>
 </div>
 
+<script>
+    function toggleFields() {
+        var roleSelect = document.getElementById("role");
+        var userMajoringField = document.getElementById("userMajoringField");
+        var userCategoryField = document.getElementById("userCategoryField");
+
+        if (roleSelect.value === "Student") {
+            userMajoringField.style.display = "block";
+            userCategoryField.style.display = "block";
+        } else {
+            userMajoringField.style.display = "none";
+            userCategoryField.style.display = "none";
+        }
+    }
+
+    // Initial check on page load in case "Student" is preselected
+    window.onload = function() {
+        toggleFields();
+    };
+</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>

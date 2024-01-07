@@ -50,7 +50,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h4 class="form-section"><i class="fas fa-calendar-alt">&nbsp;&nbsp;&nbsp;</i>User Details</h4>
                                         <br>
                                         <hr>
                                         <br>

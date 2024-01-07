@@ -46,16 +46,14 @@ $user = auth()->user();
                         <div class="submenu-content">
                             <!-- Show "Index" submenu item for role_id=2 and role_id=3 -->
                             @if($user->role_id === 2 || $user->role_id === 3)
-                            <a href="{{ route('indexAppointment') }}" class="menu-item">Index</a>
+                            <a href="{{ route('indexAppointment') }}" class="menu-item">List</a>
                             @endif
 
                             <!-- Show "Create" submenu item only for role_id=3 -->
                             @if($user->role_id === 3)
-                            <a href="{{ route('AddAppointment') }}" class="menu-item">Create</a>
+                            <a href="{{ route('ListAppointment') }}" class="menu-item">Create</a>
                             @endif
 
-                            <!-- Show "List" submenu item for all roles -->
-                            <a href="{{ route('indexAppointment') }}" class="menu-item">List</a>
                         </div>
                     </div>
 
@@ -66,12 +64,12 @@ $user = auth()->user();
                         <div class="submenu-content">
                             <!-- Show "Create" submenu item only if role_id is 2 -->
                             @if($user->role_id === 2)
-                            <a href="{{ route('createFeedback') }}" class="menu-item">Create</a>
+                            <a href="{{ route('AddFeedback') }}" class="menu-item">Create</a>
                             @endif
 
                             <!-- Show "List" submenu item to roles 2 and 3 -->
                             @if($user->role_id === 2 || $user->role_id === 3)
-                            <a href="#" class="menu-item">List</a>
+                            <a href="{{ route('ListFeedback') }}" class="menu-item">List</a>
                             @endif
                         </div>
                     </div>
@@ -82,10 +80,9 @@ $user = auth()->user();
                         <a href="#"><i class="ik ik-clipboard"></i><span>Report</span></a>
                         <div class="submenu-content">
                             @if($user->role_id === 2)
-                            <a href="{{ route('createReport') }}" class="menu-item">Create</a>
+                            <a href="{{ route('addReport') }}" class="menu-item">Create</a>
                             @endif
-                            <a href="#" class="menu-item">List</a>
-                            <a href="#" class="menu-item">Generate Report</a>
+                            <a href="{{ route('ListReport') }}" class="menu-item">List</a>
                         </div>
                     </div>
 

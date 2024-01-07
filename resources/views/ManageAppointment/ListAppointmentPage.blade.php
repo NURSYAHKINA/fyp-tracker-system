@@ -22,12 +22,12 @@
     });
 </script>
 
-<div class="card" style=" overflow: hidden;">
+<div class="card">
     <div class="card-body">
-        <div class="table-responsive" style="max-width: 100%; overflow-x: auto;">
-            <table class="table table-bordered" id="dataTable" style="width: 100%;">
-                <thead>
-                    <tr>
+        <div class="table-responsive justify-content-center">
+            <table class="table table-bordered" id="dataTable">
+            <thead class="thead-light">
+                    <tr style="text-align: center;">
                         <th style="width: 10px;">No</th>
                         <th>Date</th>
                         <th>Time</th>
@@ -40,7 +40,7 @@
                     <?php $no = 1; ?>
                     @foreach($AppointmentRecord as $data)
                     <tr id="row{{$data->id}}">
-                        <td>{{ $no++ }}</td>
+                        <td style="text-align: center;">{{ $no++ }}</td>
                         <td>{{ $data->date }}</td>
                         <td>{{ $data->time }}</td>
                         <td>{{ $data->venue }}</td>
@@ -59,8 +59,20 @@
     </div>
 </div>
 
+<style>
+    /* You can adjust these styles based on your layout */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+    }
 
+    /* Ensure the table doesn't exceed its container */
+    #dataTable {
+        width: 100%;
+        margin: 0 auto; /* Center the table horizontally */
 
+    }
+</style>
 
 <!-- Page level plugin JavaScript-->
 <script src="{{ asset('frontend') }}/js/jquery.dataTables.js"></script>

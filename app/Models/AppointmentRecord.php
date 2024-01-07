@@ -12,6 +12,7 @@ class AppointmentRecord extends Model
     protected $table = "appointments";
 
     protected $fillable = [
+        'id',
         'user_id',
         'date',
         'time',
