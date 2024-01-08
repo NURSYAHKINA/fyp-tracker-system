@@ -59,7 +59,7 @@ $user = auth()->user();
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Appointment</h6>
-                                <h2>{{App\Models\AppointmentRecord::where('user_id',11)->count()}}</h2>
+                                <h2>{{App\Models\AppointmentRecord::where('user_id',Auth::user()->id)->count()}}</h2>
                                 <small class="text-small mt-10 d-block">All appointment</small>
                             </div>
                             <div class="icon">
@@ -71,7 +71,7 @@ $user = auth()->user();
             </div>
 
             @if($user->role_id === 2 || $user->role_id === 3)
-            <!-- Supervisor Card -->
+            <!-- Feedback Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <!-- Users Card -->
                 <div class="widget">
@@ -79,7 +79,7 @@ $user = auth()->user();
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Feedback</h6>
-                                <h2>{{App\Models\FeedbackRecord::where('id_matric')->count()}}</h2>
+                                <h2>{{App\Models\FeedbackRecord::where('user_id',Auth::user()->id)->count()}}</h2>
                                 <small class="text-small mt-10 d-block">All Feedback</small>
                             </div>
                             <div class="icon">
@@ -99,7 +99,7 @@ $user = auth()->user();
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Report</h6>
-                                <h2>{{App\Models\ReportRecord::where('user_id')->count()}}</h2>
+                                <h2>{{App\Models\ReportRecord::where('user_id',Auth::user()->id)->count()}}</h2>
                                 <small class="text-small mt-10 d-block">All report</small>
                             </div>
                             <div class="icon">

@@ -141,6 +141,7 @@ class ReportController extends Controller
             ->select(
                 'id',
                 'user_id',
+                'id_matric',
                 'name',
                 'date',
                 'feedback',

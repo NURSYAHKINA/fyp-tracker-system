@@ -12,6 +12,7 @@ class ReportRecord extends Model
     protected $fillable = [
         'id',
         'user_id',
+        'id_matric',
         'name',
         'date',
         'feedback',
