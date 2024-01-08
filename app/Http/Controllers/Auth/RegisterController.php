@@ -68,6 +68,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $role = Role::where('name', $data['role'])->first();
+        $default = 0;
 
         $userData = [
             'name' => $data['name'],
@@ -78,6 +79,7 @@ class RegisterController extends Controller
             'user_majoring' => $data['user_majoring'],
             'user_category' => $data['user_category'],
             'picture' => $data['picture'] ?? 'default_picture.jpg', // Set a default value
+            'status' => $default
         ];
 
         if (isset($data['picture'])) {

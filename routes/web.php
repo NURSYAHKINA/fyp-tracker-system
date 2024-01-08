@@ -90,6 +90,7 @@ Route::controller(ReportController::class)->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboardCount', 'count')->name('count'); //To count 
     Route::get('/List_User', 'ListUser')->name('ListUser'); //link to view list of users
+    Route::get('/List_Student', 'ListStudent')->name('ListStudent'); //link to view list of users
     Route::delete('deleteUser/{id}', 'App\Http\Controllers\UserController@deleteUser')->name('deleteUser'); //link to delete the data from the database
     Route::get('viewUser/{id}', 'viewUser')->name('viewUser'); //link to go to edit page
     Route::get('editUser/{id}', 'editUser')->name('editUser'); //link to go to edit page
@@ -98,6 +99,5 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/updateAvatar', 'updateAvatar')->name('updateAvatar');
     Route::put('updateUser/{id}', 'App\Http\Controllers\UserController@updateUser')->name('updateUser'); //link to update the data in the database
     Route::post('/updatePassword', 'updatePassword')->name('updatePassword');
-    Route::get('chooseSV', 'chooseSV')->name('chooseSV'); //To count 
-
+    Route::post('/toggle-user-status/{id}', 'toggleUserStatus')->name('toggleUserStatus');
 });

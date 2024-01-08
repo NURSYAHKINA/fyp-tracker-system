@@ -22,6 +22,7 @@ class UserRecord extends Model
         'user_category',
         'picture',
         'status',
+        'sv_id',
     ];
 
     public function userType(){

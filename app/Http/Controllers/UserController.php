@@ -24,18 +24,11 @@ class UserController extends Controller
      */
     public function ListUser()
     {
-        if (auth()->user()->role_id == 1) {
-            $lists = UserRecord::with('userType')
-                ->join('roles', 'users.role_id', '=', 'roles.id')
-                ->select('users.*', 'roles.name')
-                ->get();
-        } else {
-            $lists = UserRecord::with('userType')
-                ->join('roles', 'users.role_id', '=', 'roles.id')
-                ->select('users.*', 'roles.name')
-                ->where('users.id', auth()->user()->id)
-                ->get();
-        }
+        $lists = UserRecord::with('userType')
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            ->where('users.role_id', '=', '2')
+            ->select('users.*', 'roles.name as role_name')
+            ->get();
 
         return view('ManageUser.UserList', ["listUser" => $lists]);
     }
@@ -90,9 +83,12 @@ class UserController extends Controller
     {
         $userInfo = UserRecord::find($id);
         $roles = Role::all(); // Fetch positions from the database
+        $userInfo = User::find($id);
 
-        return view('ManageUser.EditUser', compact('userInfo', 'roles')); //returns the edit view with the employee information
+        // Fetch users with role_id = 2 (assuming role_id is a field in your users table)
+        $supervisors = User::where('role_id', 2)->get();
 
+        return view('ManageUser.EditUser', compact('userInfo', 'supervisors'));
     }
 
     /**
@@ -102,14 +98,14 @@ class UserController extends Controller
     {
         $updateInfo = UserRecord::findOrFail($id);
         $validatedData = $request->validate([
-            'name' => 'required',
-            'id_matric' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'role_id' => 'required',
-            'user_category' => 'required',
-            'user_majoring' => 'required',
-            'picture' => 'required',
+            'name' => '',
+            'id_matric' => '',
+            'email' => '',
+            'password' => '',
+            'user_category' => '',
+            'user_majoring' => '',
+            'picture' => '',
+            'sv_id' => '',
 
         ]);
 
@@ -206,12 +202,25 @@ class UserController extends Controller
             ->with('success', 'You have successfully change password.');
     }
 
-    public function chooseSV(Request $request)
-{
-    $supervisors = UserRecord::where('role_id', 2)
-        ->pluck('name', 'id') // Assuming 'id' is the primary key column of the users table
-        ->all();
+    public function ListStudent()
+    {
+        $lists = UserRecord::with('userType')
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            ->where('users.role_id', '=', '3')
+            ->select('users.*', 'roles.name as role_name')
+            ->get();
 
-    return view('ManageUser.EditUser', compact('supervisors'));
-}
+        return view('ManageUser.ListStudent', ["ListStudent" => $lists]);
+    }
+
+    public function toggleUserStatus(Request $request, $id)
+    {
+        $user = UserRecord::findOrFail($id);
+
+        // Toggle the status (assuming 1 for Active and 0 for Inactive)
+        $user->status = !$user->status;
+        $user->save();
+
+        return redirect()->back()->with('success', 'User status toggled successfully!');
+    }
 }

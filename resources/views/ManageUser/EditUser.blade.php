@@ -86,51 +86,35 @@ $user = auth()->user();
                                                 </select>
                                             </div>
                                         </div>
-                                        <!-- 
-                                        <div class="form-group row">
-                                            <div class="col-md-12">
-                                                <select name="role_id" style="width: 150%;" class="form-control border-primary" id="id">
-                                                    <select class="form-control" id="id" name="id">
-                                                        <option value="">Choose Supervisor</option>
-                                                        @foreach($userInfo as $supervisors)
-                                                        <option value="{{ $supervisors }}">{{ $supervisors }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </select>
-                                            </div>
-                                        </div> -->
 
                                         <div class="form-group row">
-                                            <label class="col-md-6 label-control">Choose SV</label>
+                                            <label for="sv_id" class="col-md-6 label-control">Choose SV</label>
                                             <div class="col-md-12">
-                                                <select style="width: 150%;" class="form-control border-primary" id="role_id" name="role_id">
-                                                    <option value="">Choose SV</option>
-                                                    @if($supervisors && (is_array($supervisors) || is_object($supervisors)))
-                                                    @foreach($supervisors as $id => $supervisorName)
-                                                    <option value="{{ $id }}">{{ $supervisorName }}</option>
+                                                <select name="sv_id" style="width: 150%;" class="form-control border-primary" id="sv_id">
+                                                    <option value="">Select SV</option>
+                                                    @foreach($supervisors as $supervisor)
+                                                    <option value="{{ $supervisor->id }}" {{ old('sv_id', $userInfo->id) == $supervisor->id ? 'selected' : '' }}>
+                                                        {{ $supervisor->name }} <!-- Assuming 'name' is the field representing supervisor names -->
+                                                    </option>
                                                     @endforeach
-                                                    @endif
                                                 </select>
-                                                   
                                             </div>
                                         </div>
-                                    </div>
-                                    @endif
 
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <hr>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary" id="updateButton">Update</button>
+                    </div>
             </div>
-            <hr>
-
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-primary" id="updateButton">Update</button>
-            </div>
+            </form>
         </div>
-        </form>
     </div>
-</div>
 </div>
 
 
@@ -186,11 +170,6 @@ $user = auth()->user();
                     <div class="form-group row">
 
                         <div class="col-md-12">
-                            <small class="form-text text-muted">Old Password</small>
-                            <input type="password" class="form-control" id="password" name="password" value="{{ old('password', $userInfo->password) }}" disabled>
-                        </div>
-
-                        <div class="col-md-12">
                             <small class="form-text text-muted">New Password</small>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="newPassword" name="newPassword">
@@ -214,13 +193,66 @@ $user = auth()->user();
                             </div>
                         </div>
 
+
+
                         <button type="submit" class="btn btn-primary" style="float: right;">
                             Submit
                         </button>
+
+
                 </form>
             </div>
         </div>
     </div>
+
+</div>
+
+<!-- Modal Change Password-->
+<div class="modal fade" id="modalSupervisor" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Choose Supervisor</h4>
+            </div>
+            <div class="card-body">
+
+                <form method="POST" enctype="multipart/form-data" action="{{route('updatePassword')}}" onsubmit="upload()">
+                    @csrf
+
+                    <div class="form-group row">
+
+                        <div class="col-md-12">
+                            <small class="form-text text-muted">Old Password</small>
+                            <input type="password" class="form-control" id="password" name="password" value="{{ old('password', $userInfo->password) }}" disabled>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <small class="form-text text-muted">Confirm-Password</small>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirmPass" name="confirmPass">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-eye" id="toggleConfirmPassword"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary" style="float: right;">
+                            Submit
+                        </button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>

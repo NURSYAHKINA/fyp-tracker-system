@@ -46,7 +46,7 @@
     @endforeach
 
 
-    <form action="{{route('storeAppointment')}}"  method="POST" id="formNew" onsubmit="upload()">
+    <form action="{{route('storeAppointment')}}" method="POST" id="formNew" onsubmit="upload()">
         @csrf
 
         <div class="row">
@@ -62,10 +62,16 @@
                             <div class="form-group row">
                                 <label for="date" class="col-sm-2 col-form-label">Date:</label>
                                 <div class="col-sm-9">
-                                    <select name="date" class="form-control border-primary" id="date" name ="date" required>
-                                        <option value="" selected >Choose Date</option>
+                                    <select name="date" class="form-control border-primary" id="date" name="date" required>
+                                        <option value="" selected>Choose Date</option>
                                         @foreach($availabilities as $data)
+                                        @php
+                                        $date = \Carbon\Carbon::parse($data); // Assuming $data contains date strings
+                                        $currentDate = \Carbon\Carbon::now();
+                                        @endphp
+                                        @if($date->gte($currentDate)) <!-- Display only dates greater than or equal to current date -->
                                         <option value="{{ $data }}">{{ $data }}</option>
+                                        @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -75,19 +81,25 @@
                             <div class="form-group row">
                                 <label for="time" class="col-sm-2 col-form-label">Time:</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="time" name ="time">
+                                    <select class="form-control" id="time" name="time">
                                         <option value="">Choose Time</option>
                                         @foreach($time as $timeavailable)
+                                        @php
+                                        $currentTime = date('H:i'); // Current time in HH:MM format
+                                        @endphp
+                                        @if($timeavailable >= $currentTime) <!-- Compare time strings directly -->
                                         <option value="{{ $timeavailable }}">{{ $timeavailable }}</option>
+                                        @endif
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
+
                             <div class="form-group row">
                                 <label for="venue" class="col-sm-2 col-form-label">Venue:</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="venue" name ="venue">
+                                    <select class="form-control" id="venue" name="venue">
                                         <option value="">Choose Venue</option>
                                         <option value="room 207">Room 207</option>
                                         <option value="other"></option>

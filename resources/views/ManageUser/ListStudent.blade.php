@@ -31,31 +31,23 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach($listUser as $list)
+                    <?php
+                    $no = 1;
+                    ?>
+                    @foreach($ListStudent as $list)
                     <tr>
-                        <td>{{ $list->id }}</td>
+                        <td style="text-align: center;">{{ $no++ }}</td>
                         <td>{{$list->name}}</td>
                         <td>{{$list->email}}</td>
                         <td>{{$list->role_name}}</td>
-                        <td class="text-center align-middle">
-                            <!-- Toggle button for user status -->
-                            <form action="{{ route('toggleUserStatus', ['id' => $list->id]) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-sm {{ $list->status ? 'btn-success' : 'btn-danger' }}">
-                                    {{ $list->status ? 'Active' : 'Inactive' }}
-                                </button>
-                            </form>
-                        </td>
+                        
                     </tr>
                     @endforeach
                 </tbody>
-
-
             </table>
         </div>
     </div>
@@ -71,8 +63,7 @@
     /* Ensure the table doesn't exceed its container */
     #dataTable {
         width: 100%;
-        margin: 0 auto;
-        /* Center the table horizontally */
+        margin: 0 auto; /* Center the table horizontally */
 
     }
 </style>
@@ -81,5 +72,4 @@
 <script src="{{ asset('frontend') }}/js/jquery.dataTables.js"></script>
 <!-- for sweet alert fire-->
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
-
 @endsection
