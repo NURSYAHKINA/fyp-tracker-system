@@ -20,7 +20,7 @@ $user = auth()->user();
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Student</h6>
-                                <h2>{{App\Models\UserRecord::where('role_id',3)->count()}}</h2>
+                                <h2>{{App\Models\UserRecord::where('role_id',3)->where('id')->count()}}</h2>
                                 <small class="text-small mt-10 d-block">Registered Student</small>
                             </div>
                             <div class="icon">

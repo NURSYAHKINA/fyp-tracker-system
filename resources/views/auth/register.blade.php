@@ -102,7 +102,7 @@ $user = auth()->user();
                                 <option value="">Select a role</option>
                                 <option value="Student">Student</option>
                                 <option value="Supervisor">Supervisor</option>
-                                <option value="Coordinator">Coordinator</option>
+                                <!-- <option value="Coordinator">Coordinator</option> -->
                             </select>
                             <i class="ik ik-users"></i>
                         </div>
@@ -129,6 +129,16 @@ $user = auth()->user();
                             <i class=""></i>
                         </div>
 
+                        <div class="form-group" id="supervisorField" style="display: none;">
+                            <select class="form-control" id="supervisor" name="supervisor">
+                                <option value="" selected>Choose Supervisor</option>
+                                @foreach($userData as $data)
+                                <option value="{{ $data }}">{{ $data }}</option>
+                                @endforeach
+                            </select>
+                            <i class=""></i>
+                        </div>
+
                         <div class="sign-btn text-center">
                             <button type="submit" class="btn btn-theme">Create Account</button>
                         </div>
@@ -148,13 +158,16 @@ $user = auth()->user();
         var roleSelect = document.getElementById("role");
         var userMajoringField = document.getElementById("userMajoringField");
         var userCategoryField = document.getElementById("userCategoryField");
+        var supervisorField = document.getElementById("supervisorField");
 
         if (roleSelect.value === "Student") {
             userMajoringField.style.display = "block";
             userCategoryField.style.display = "block";
+            supervisorField.style.display = "block";
         } else {
             userMajoringField.style.display = "none";
             userCategoryField.style.display = "none";
+            supervisorField.style.display = "block";
         }
     }
 

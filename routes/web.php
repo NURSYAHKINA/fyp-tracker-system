@@ -35,7 +35,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route::post('/register', [RegisterController::class, 'create'])->name('register');
+// Route::post('/register', [RegisterController::class, 'create'])->name('register');
 
 Route::controller(AvailabilityController::class)->group(function () {
     Route::get('indexAvailability', 'indexAvailability')->name('indexAvailability'); //link to go to appointment homepage

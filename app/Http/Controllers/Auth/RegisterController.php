@@ -77,12 +77,12 @@ class RegisterController extends Controller
             'role_id' => $role->id,
             'user_majoring' => $data['user_majoring'],
             'user_category' => $data['user_category'],
-            // 'picture' => $data['picture'] ?? 'default_picture.jpg', // Set a default value
+            'picture' => $data['picture'] ?? 'default_picture.jpg', // Set a default value
         ];
 
-        // if (isset($data['picture'])) {
-        //     $userData['picture'] = $data['picture'];
-        // }
+        if (isset($data['picture'])) {
+            $userData['picture'] = $data['picture'];
+        }
 
         return User::create($userData);
     }

@@ -45,9 +45,7 @@ $user = auth()->user();
                         <a href="#"><i class="ik ik-calendar"></i><span>Appointment</span></a>
                         <div class="submenu-content">
                             <!-- Show "Index" submenu item for role_id=2 and role_id=3 -->
-                            @if($user->role_id === 2 || $user->role_id === 3)
                             <a href="{{ route('indexAppointment') }}" class="menu-item">List</a>
-                            @endif
 
                             <!-- Show "Create" submenu item only for role_id=3 -->
                             @if($user->role_id === 3)
