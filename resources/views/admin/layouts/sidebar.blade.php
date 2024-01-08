@@ -51,7 +51,7 @@ $user = auth()->user();
 
                             <!-- Show "Create" submenu item only for role_id=3 -->
                             @if($user->role_id === 3)
-                            <a href="{{ route('ListAppointment') }}" class="menu-item">Create</a>
+                            <a href="{{ route('AddAppointment') }}" class="menu-item">Create</a>
                             @endif
 
                         </div>

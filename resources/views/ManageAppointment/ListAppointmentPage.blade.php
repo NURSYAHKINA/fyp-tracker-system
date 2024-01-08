@@ -16,7 +16,7 @@
             ],
             "language": {
                 search: '<i class="fa fa-search" aria-hidden="true"></i>',
-                searchPlaceholder: 'Search Claim'
+                searchPlaceholder: 'Search Appointment'
             }
         });
     });
@@ -26,7 +26,7 @@
     <div class="card-body">
         <div class="table-responsive justify-content-center">
             <table class="table table-bordered" id="dataTable">
-            <thead class="thead-light">
+                <thead class="thead-light">
                     <tr style="text-align: center;">
                         <th style="width: 10px;">No</th>
                         <th>Date</th>
@@ -46,13 +46,13 @@
                         <td>{{ $data->venue }}</td>
                         <td>{{ $data->purpose }}</td>
                         <td>
-                            <div class="d-flex justify-content-end">
-                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            <div class="d-flex justify-content-center">
+                            <a href="{{route('viewAppointment', ['id' => $data->id])}}" class="mr-2"><i class="fas fa-eye font-12"></i></a>
                             </div>
                         </td>
                     </tr>
                     @endforeach
-                
+
                 </tbody>
             </table>
         </div>
@@ -69,7 +69,8 @@
     /* Ensure the table doesn't exceed its container */
     #dataTable {
         width: 100%;
-        margin: 0 auto; /* Center the table horizontally */
+        margin: 0 auto;
+        /* Center the table horizontally */
 
     }
 </style>

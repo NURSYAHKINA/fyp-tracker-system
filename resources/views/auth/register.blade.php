@@ -102,7 +102,7 @@ $user = auth()->user();
                                 <option value="">Select a role</option>
                                 <option value="Student">Student</option>
                                 <option value="Supervisor">Supervisor</option>
-                                <!-- <option value="Coordinator">Coordinator</option> -->
+                                <option value="Coordinator">Coordinator</option>
                             </select>
                             <i class="ik ik-users"></i>
                         </div>

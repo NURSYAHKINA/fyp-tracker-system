@@ -68,7 +68,7 @@ Route::controller(AppointmentController::class)->group(function () {
 Route::controller(FeedbackController::class)->group(function () {
     Route::get('indexFeedback', 'indexFeedback')->name('indexFeedback'); //link to go to appointment homepage
     Route::get('AddFeedback', 'AddFeedback')->name('AddFeedback'); //link to go to add feedback page
-    Route::get('viewFeedback', 'listFeedback')->name('listFeedback'); //link to go to view list feedback
+    Route::get('viewFeedback/{id}', 'viewFeedback')->name('viewFeedback'); //link to go to view list feedback
     Route::post('/storeFeedback', 'storeFeedback')->name('storeFeedback'); //link to store the appointment data to the database
     Route::get('editFeedback/{id}', 'editFeedback')->name('editFeedback'); //link to go to edit page
     Route::post('updateFeedback/{id}', 'updateFeedback')->name('updateFeedback'); //link to update the availability data from the database
@@ -79,7 +79,7 @@ Route::controller(FeedbackController::class)->group(function () {
 Route::controller(ReportController::class)->group(function () {
     Route::get('indexReport', 'indexReport')->name('indexReport'); //link to go to appointment homepage
     Route::get('addReport', 'addReport')->name('addReport'); //link to go to add report page
-    Route::get('viewReport', 'listReport')->name('listReport'); //link to go to view list availability
+    Route::get('viewReport/{id}', 'listReport')->name('listReport'); //link to go to view list availability
     Route::post('/storeReport', 'storeReport')->name('storeReport'); //link to store the appointment data to the database
     Route::get('editReport/{id}', 'editReport')->name('editReport'); //link to go to edit page
     Route::post('updateReport/{id}', 'updateReport')->name('updateReport'); //link to update the availability data from the database

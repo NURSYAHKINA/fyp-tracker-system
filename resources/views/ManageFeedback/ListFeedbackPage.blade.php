@@ -52,7 +52,7 @@
                         <td>{{ $data->comment }}</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                            <i class="fas fa-eye"></i>
+                            <a href="{{route('viewFeedback', ['id' => $data->id])}}" class="mr-2"><i class="fas fa-eye font-12"></i></a>
                             </div>
                         </td>
                     </tr>

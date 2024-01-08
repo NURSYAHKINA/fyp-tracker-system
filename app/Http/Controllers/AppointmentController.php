@@ -45,7 +45,7 @@ class AppointmentController extends Controller
             ->pluck('availabilities.date')
             ->all();
 
-        $time = TimeRecord::select('times.time')
+        $time = TimeRecord::select('times.time')    
             ->groupBy('times.time')
             ->pluck('times.time')
             ->all();
@@ -186,7 +186,7 @@ class AppointmentController extends Controller
                 'purpose',
                 'user_id',
             )
-            ->orderBy('asc')
+            //->orderBy('asc')
             ->get();
 
         return view('ManageAppointment.ListAppointmentPage', compact('AppointmentRecord'));
