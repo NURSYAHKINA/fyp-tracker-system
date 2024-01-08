@@ -19,7 +19,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{ url('dashboard')}}"><i class="ik ik-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{ route('listFeedback') }}">Feedback</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('ListFeedback') }}">Feedback</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>
             </nav>
@@ -61,7 +61,7 @@
                                 <label for="date" class="col-sm-3 col-form-label">Choose your student</label>
                                 <div class="col-sm-8">
                                     <select class="form-control" id="times">
-                                        <option value="" selected >Choose Student</option>
+                                        <option value="App\Models\AppointmentRecord::where('id', Auth::user()->sv_id)" selected >Choose Student</option>
                                         @foreach($users as $data)
                                         <option value="{{ $data }}">{{ $data }}</option>
                                         @endforeach
@@ -70,16 +70,25 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="date" class="col-sm-3 col-form-label">Choose Date</label>
+                                <label for="date" class="col-sm-3 col-form-label">Date:</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control" id="times">
-                                        <option value="" selected >Choose Appointment</option>
-                                        @foreach($appointments as $data)
-                                        <option value="{{ $data }}">{{ $data }}</option>
+                                    <select name="date" class="form-control border-primary" id="date" name="date" required>
+                                        <option value="App\Models\AvailabilityRecord::where('user_id', Auth::user()->id)" selected>Choose Date</option>
+                                        @foreach($appointments as $Appdata)
+                                        @php
+                                        $date = \Carbon\Carbon::parse($Appdata); // Assuming $data contains date strings
+                                        $currentDate = \Carbon\Carbon::now();
+                                        @endphp
+                                        @if($date->gte($currentDate)) <!-- Display only dates greater than or equal to current date -->
+
+                                        <option value="{{ $Appdata }}">{{ $Appdata }}</option>
+                                        @endif
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+
+
 
                             <div class="form-group row">
                                 <label for="rate_satisfaction" class="col-sm-3 col-form-label">Rate satisfaction</label>

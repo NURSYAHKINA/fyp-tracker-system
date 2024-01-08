@@ -12,7 +12,7 @@ $user = auth()->user();
         <!-- All Card -->
         <div class="row clearfix justify-content-center">
 
-            @if($user->role_id === 1 || $user->role_id === 2)
+            @if($user->role_id === 1)
             <!-- Student Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="widget">
@@ -21,6 +21,26 @@ $user = auth()->user();
                             <div class="state">
                                 <h6>Student</h6>
                                 <h2>{{App\Models\UserRecord::where('role_id',3)->count()}}</h2>
+                                <small class="text-small mt-10 d-block">Registered Student</small>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-thin fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            @if($user->role_id === 2)
+            <!-- Student Card for SV-->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>Student</h6>
+                                <h2>{{App\Models\UserRecord::where('id', Auth::user()->id)->count()}}</h2>
                                 <small class="text-small mt-10 d-block">Registered Student</small>
                             </div>
                             <div class="icon">
@@ -55,11 +75,11 @@ $user = auth()->user();
             <!-- Appointment Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="widget">
-                    <div class="widget-body">
+                    <div class="widget-body">       
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Appointment</h6>
-                                <h2>{{App\Models\AppointmentRecord::where('user_id',Auth::user()->id)->count()}}</h2>
+                                <h2>{{App\Models\AppointmentRecord::where('user_id', Auth::user()->id)->count()}}</h2>
                                 <small class="text-small mt-10 d-block">All appointment</small>
                             </div>
                             <div class="icon">
@@ -91,15 +111,16 @@ $user = auth()->user();
             </div>
             @endif
 
-            <!-- Supervisor Card -->
+            <!-- Report Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
-                <!-- Users Card -->
                 <div class="widget">
                     <div class="widget-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Report</h6>
+
                                 <h2>{{App\Models\ReportRecord::where('user_id',Auth::user()->id)->count()}}</h2>
+
                                 <small class="text-small mt-10 d-block">All report</small>
                             </div>
                             <div class="icon">
@@ -140,7 +161,7 @@ $user = auth()->user();
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Get the count of appointments
-        var appointmentCount = {{App\Models\AppointmentRecord::count()}};
+        var appointmentCount = <?php echo App\Models\AppointmentRecord::count(); ?>;
 
         // Set the minimum appointments required
         var minimumAppointments = 10;

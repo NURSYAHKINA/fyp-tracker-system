@@ -39,16 +39,21 @@
                 <tbody>
                     <?php $no = 1; ?>
                     @foreach($AppointmentRecord as $data)
-                    <tr id="row{{$data->id}}">
-                        <td style="text-align: center;">{{ $no++ }}</td>
+                    <tr style="text-align: center;" id="row{{$data->id}}">
+                        <td>{{ $no++ }}</td>
                         <td>{{ $data->date }}</td>
                         <td>{{ $data->time }}</td>
                         <td>{{ $data->venue }}</td>
                         <td>{{ $data->purpose }}</td>
                         <td>
-                            <div class="d-flex justify-content-center">
-                            <a href="{{route('viewAppointment', ['id' => $data->id])}}" class="mr-2"><i class="fas fa-eye font-12"></i></a>
-                            </div>
+                            <form action="{{ route('deleteAppointment', $data->id)  }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <a href="{{route('viewAppointment',['id' => $data->id])}}" class="mr-3"><i class="fas fa-eye font-14"></i></a>
+                                <a href="{{route('updateAppointment',['id' => $data->id])}}" class="mr-2"><i class="fas fa-edit text-primary font-14"></i></a>
+                                <button type="submit" name="submit" style="border: none; background: none;"><i class="fas fa-trash-alt text-danger font-14"></i></button>
+
+                            </form>
                         </td>
                     </tr>
                     @endforeach

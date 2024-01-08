@@ -51,7 +51,10 @@ class FeedbackController extends Controller
             ->pluck('users.name')
             ->all();
 
-        return view('ManageFeedback.AddFeedbackPage', compact('appointments', 'users'));
+        $userFeedback = FeedbackRecord::where('user_id', Auth::user()->id)->get();
+
+
+        return view('ManageFeedback.AddFeedbackPage', compact('appointments', 'users', 'userFeedback'));
     }
 
     /**
@@ -60,23 +63,26 @@ class FeedbackController extends Controller
     public function storeFeedback(Request $request)
     {
         $currUser = Auth::user()->id;
-        $id_matric = $request->input('id_matric');
+        //$id_matric = $request->input('id_matric');
         $name = $request->input('name');
         $rating = $request->input('rating');
         $comment = $request->input('comment');
+        $date = $request->input('date');
         $user_id = $currUser;
 
-        $data = array(
+        $Feedbackdata = array(
 
-            'id_matric' => $id_matric,
+            //'id_matric' => $id_matric,
             'name' => $name,
             'rating' => $rating,
             'comment' => $comment,
             'user_id' => $user_id,
+            'date' => $date,
 
         );
 
-        DB::table('feedbacks')->insert($data);
+        dd($request);
+        DB::table('feedbacks')->insert($Feedbackdata);
         return back()->with('success', 'Feedback successfully added');
     }
 
@@ -100,7 +106,7 @@ class FeedbackController extends Controller
 
         return view('ManageFeedback.EditFeedbackPage', compact('userInfo'));
     }
-    
+
 
     /**
      * Update the specified resource in storage.

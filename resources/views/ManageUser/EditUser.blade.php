@@ -19,7 +19,7 @@ $user = auth()->user();
                             <div class="col-md-4">
                                 <div class="card-header border-bottom text-center">
                                     <button type="button" class="mb-4 btn btn-sm btn-pill btn-outline-primary mr-2" data-toggle="modal" data-target="#modalProfile">
-                                        <i class="material-icons mr-1"></i>Change Avatar</button>
+                                        <i class="material-icons mr-1"></i>Change Picture</button>
                                     <button type="button" class="mb-4 btn btn-sm btn-pill btn-outline-primary mr-2" data-toggle="modal" data-target="#modalPassword">
                                         <i class="material-icons mr-1"></i>Change Password</button>
                                 </div>

@@ -84,7 +84,7 @@ Route::controller(ReportController::class)->group(function () {
     Route::get('editReport/{id}', 'editReport')->name('editReport'); //link to go to edit page
     Route::post('updateReport/{id}', 'updateReport')->name('updateReport'); //link to update the availability data from the database
     Route::delete('deleteReport/{id}', 'deleteReport')->name('deleteReport'); //link to delete the data from the database
-    Route::get('ListReport', 'ListReport')->name('ListReport'); //link to go to view list availability
+    //Route::get('ListReport', 'ListReport')->name('ListReport'); //link to go to view list availability
 });
 
 Route::controller(UserController::class)->group(function () {
