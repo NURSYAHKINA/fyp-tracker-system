@@ -26,7 +26,8 @@ $user = auth()->user();
                     <div class="nav-item has-sub">
                         <a href="#"><i class="fas fa-solid fa-users"></i><span>Users</span></a>
                         <div class="submenu-content">
-                            <a href="{{ route('ListUser') }}" class="menu-item">All users</a>
+                            <a href="{{ route('ListUser') }}" class="menu-item">All Students</a>
+                            <!-- <a href="{{ route('ListUser') }}" class="menu-item">All Supervisor</a> -->
                         </div>
                     </div>
                     @endif

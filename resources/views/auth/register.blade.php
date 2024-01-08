@@ -129,16 +129,6 @@ $user = auth()->user();
                             <i class=""></i>
                         </div>
 
-                        <div class="form-group" id="supervisorField" style="display: none;">
-                            <select class="form-control" id="supervisor" name="supervisor">
-                                <option value="" selected>Choose Supervisor</option>
-                                @foreach($userData as $data)
-                                <option value="{{ $data }}">{{ $data }}</option>
-                                @endforeach
-                            </select>
-                            <i class=""></i>
-                        </div>
-
                         <div class="sign-btn text-center">
                             <button type="submit" class="btn btn-theme">Create Account</button>
                         </div>

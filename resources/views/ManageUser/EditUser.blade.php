@@ -43,7 +43,7 @@ $user = auth()->user();
                                             </div>
                                         </div>
                                         @endif
-                                        
+
                                         <div class="form-group row">
                                             <label class="col-md-6 label-control">Email</label>
                                             <div class="col-md-12">
@@ -86,20 +86,51 @@ $user = auth()->user();
                                                 </select>
                                             </div>
                                         </div>
-                                        @endif
+                                        <!-- 
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <select name="role_id" style="width: 150%;" class="form-control border-primary" id="id">
+                                                    <select class="form-control" id="id" name="id">
+                                                        <option value="">Choose Supervisor</option>
+                                                        @foreach($userInfo as $supervisors)
+                                                        <option value="{{ $supervisors }}">{{ $supervisors }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </select>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="form-group row">
+                                            <label class="col-md-6 label-control">Choose SV</label>
+                                            <div class="col-md-12">
+                                                <select style="width: 150%;" class="form-control border-primary" id="role_id" name="role_id">
+                                                    <option value="">Choose SV</option>
+                                                    @if($supervisors && (is_array($supervisors) || is_object($supervisors)))
+                                                    @foreach($supervisors as $id => $supervisorName)
+                                                    <option value="{{ $id }}">{{ $supervisorName }}</option>
+                                                    @endforeach
+                                                    @endif
+                                                </select>
+                                                   
+                                            </div>
+                                        </div>
                                     </div>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-primary" id="updateButton">Update</button>
-                    </div>
             </div>
-            </form>
+            <hr>
+
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" id="updateButton">Update</button>
+            </div>
         </div>
+        </form>
     </div>
+</div>
 </div>
 
 
@@ -183,18 +214,13 @@ $user = auth()->user();
                             </div>
                         </div>
 
-
-
                         <button type="submit" class="btn btn-primary" style="float: right;">
                             Submit
                         </button>
-
-
                 </form>
             </div>
         </div>
     </div>
-
 </div>
 
 <script>

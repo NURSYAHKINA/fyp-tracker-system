@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\AppointmentRecord;
@@ -40,7 +41,7 @@ class UserController extends Controller
     }
 
     public function index()
-    { 
+    {
         // $UserRecord = DB::table('users')
         //     ->select(
         //         'id',
@@ -62,13 +63,12 @@ class UserController extends Controller
         return view('ManageUser.UserList', compact('UserRecord'));
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -78,7 +78,7 @@ class UserController extends Controller
     {
         $userInfo = UserRecord::find($id);
         $roles = Role::all(); // Fetch positions from the database
-    
+
 
         return view('ManageUser.ViewUser', compact('userInfo', 'roles'));
     }
@@ -92,7 +92,7 @@ class UserController extends Controller
         $roles = Role::all(); // Fetch positions from the database
 
         return view('ManageUser.EditUser', compact('userInfo', 'roles')); //returns the edit view with the employee information
-        
+
     }
 
     /**
@@ -117,7 +117,6 @@ class UserController extends Controller
         $updateInfo->update($validatedData);
 
         return redirect()->back()->with('success', 'User Info updated successfully!');
-    
     }
 
     public function updateAvatar(Request $request)
@@ -142,18 +141,18 @@ class UserController extends Controller
     public function deleteUser($id)
     {
         $userRecord = UserRecord::find($id);
-    
+
         if (!$userRecord) {
             return redirect()->back()->with('error', 'Employee record not found.');
         }
-    
+
         // Delete both user records
         $userRecord->delete();
 
         // Redirect to the previous page
         return redirect()->back()->with('success', 'User records deleted successfully!');
     }
-    
+
 
     public function count()
 
@@ -190,22 +189,29 @@ class UserController extends Controller
                 ->where('user_id', auth()->user()->id)
                 ->count();
         }
-    
-}
+    }
 
-public function updatePassword(Request $request)
+    public function updatePassword(Request $request)
+    {
+
+        $user = Auth::user();
+
+
+        User::where('id', '=', $user->id)->update([
+
+            'users.password' => Hash::make($request->password),
+
+        ]);
+        return back()
+            ->with('success', 'You have successfully change password.');
+    }
+
+    public function chooseSV(Request $request)
 {
+    $supervisors = UserRecord::where('role_id', 2)
+        ->pluck('name', 'id') // Assuming 'id' is the primary key column of the users table
+        ->all();
 
-    $user = Auth::user();
-
-
-    User::where('id', '=', $user->id)->update([
-
-        'users.password' => Hash::make($request->password),
-
-    ]);
-    return back()
-        ->with('success', 'You have successfully change password.');
+    return view('ManageUser.EditUser', compact('supervisors'));
 }
-
 }

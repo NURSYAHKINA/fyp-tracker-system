@@ -98,4 +98,6 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/updateAvatar', 'updateAvatar')->name('updateAvatar');
     Route::put('updateUser/{id}', 'App\Http\Controllers\UserController@updateUser')->name('updateUser'); //link to update the data in the database
     Route::post('/updatePassword', 'updatePassword')->name('updatePassword');
+    Route::get('chooseSV', 'chooseSV')->name('chooseSV'); //To count 
+
 });
