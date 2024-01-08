@@ -35,13 +35,15 @@ $user = auth()->user();
                                             </div>
                                         </div>
 
+                                        @if($user->role_id === 2 || $user->role_id === 3)
                                         <div class="form-group row">
                                             <label class="col-md-6 label-control">ID Matric</label>
                                             <div class="col-md-12">
                                                 <input class="form-control border-primary" style="width: 150%;" type="text" placeholder="ID Matric" name="id_matric" id="id_matric" value="{{ old('id_matric', $userInfo->id_matric) }}">
                                             </div>
                                         </div>
-
+                                        @endif
+                                        
                                         <div class="form-group row">
                                             <label class="col-md-6 label-control">Email</label>
                                             <div class="col-md-12">

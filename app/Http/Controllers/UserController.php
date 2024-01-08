@@ -41,20 +41,24 @@ class UserController extends Controller
 
     public function index()
     { 
-        $UserRecord = DB::table('users')
-            ->select(
-                'id',
-                'name',
-                'id_matric',
-                'email',
-                'password',
-                'user_category',
-                'user_majoring',
-                'picture',
-            )
+        // $UserRecord = DB::table('users')
+        //     ->select(
+        //         'id',
+        //         'name',
+        //         'id_matric',
+        //         'email',
+        //         'password',
+        //         'user_category',
+        //         'user_majoring',
+        //         'picture',
+        //     )
 
-            ->orderBy('name', 'asc')
-            ->get();
+        //     ->orderBy('name', 'asc')
+        //     ->get();
+
+        $UserRecord = UserRecord::all();
+
+        dd($UserRecord);
         return view('ManageUser.UserList', compact('UserRecord'));
     }
 
