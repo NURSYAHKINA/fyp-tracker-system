@@ -23,8 +23,12 @@ class AppointmentController extends Controller
     {
         $currID = Auth::user()->id;
 
+        $studentID = DB::table('users')
+        ->where('users.sv_id', '=', $currID)
+        ->first();
+
         $AppointmentRecord = DB::table('appointments')
-            ->where('appointments.user_id', '=', $currID)
+            ->where('appointments.user_id', '=', $studentID->id)
             ->select(
                 'id',
                 'date',
@@ -34,6 +38,7 @@ class AppointmentController extends Controller
                 'user_id',
             )
             ->get();
+
 
         return view('ManageAppointment.ListAppointmentPage', compact('AppointmentRecord'));
     }

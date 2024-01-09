@@ -79,12 +79,12 @@ Route::controller(FeedbackController::class)->group(function () {
 Route::controller(ReportController::class)->group(function () {
     Route::get('indexReport', 'indexReport')->name('indexReport'); //link to go to appointment homepage
     Route::get('addReport', 'addReport')->name('addReport'); //link to go to add report page
-    Route::get('viewReport/{id}', 'listReport')->name('listReport'); //link to go to view list availability
+    Route::get('viewReport/{id}', 'viewReport')->name('viewReport'); //link to go to view list availability
     Route::post('/storeReport', 'storeReport')->name('storeReport'); //link to store the appointment data to the database
     Route::get('editReport/{id}', 'editReport')->name('editReport'); //link to go to edit page
     Route::post('updateReport/{id}', 'updateReport')->name('updateReport'); //link to update the availability data from the database
     Route::delete('deleteReport/{id}', 'deleteReport')->name('deleteReport'); //link to delete the data from the database
-    //Route::get('ListReport', 'ListReport')->name('ListReport'); //link to go to view list availability
+    Route::get('ListReport', 'ListReport')->name('ListReport'); //link to go to view list availability
 });
 
 Route::controller(UserController::class)->group(function () {

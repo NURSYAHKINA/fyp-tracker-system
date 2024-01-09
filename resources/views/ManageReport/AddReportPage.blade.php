@@ -19,7 +19,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{ url('dashboard')}}"><i class="ik ik-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{ route('listReport') }}">Report</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('ListReport') }}">Report</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>
             </nav>
@@ -59,10 +59,10 @@
                             <div class="form-group row">
                                 <label for="date" class="col-sm-3 col-form-label">Choose your student:</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control" id="times">
+                                <select class="form-control" id="names" name="names">
                                         <option value="" selected>Choose Student</option>
-                                        @foreach($users as $data)
-                                        <option value="{{ $data }}">{{ $data }}</option>
+                                        @foreach($reports as $userName => $feedbacksDate)
+                                        <option value="{{ $userName }}">{{ $userName }} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -71,9 +71,9 @@
                             <div class="form-group row">
                                 <label for="rate_satisfaction" class="col-sm-3 col-form-label">Choose Feedback:</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control" id="rate_satisfaction">
+                                    <select class="form-control" id="rate_satisfaction" name="feedback">
                                         <option value="" selected>Choose added feedback</option>
-                                        @foreach($feedbacks as $data)
+                                        @foreach($reports as $data)
                                         <option value="{{ $data }}">{{ $data }}</option>
                                         @endforeach
                                     </select>
@@ -92,12 +92,5 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#rate_satisfaction').change(function() {
-            var selectedFeedback = $(this).val();
-            $('#selectedFeedback').html(`<p>Selected Feedback: ${selectedFeedback}</p>`);
-        });
-    });
-</script>
+
 @endsection

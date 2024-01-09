@@ -60,10 +60,10 @@
                             <div class="form-group row">
                                 <label for="date" class="col-sm-3 col-form-label">Choose your student</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control" id="times">
-                                        <option value="App\Models\AppointmentRecord::where('id', Auth::user()->sv_id)" selected >Choose Student</option>
-                                        @foreach($users as $data)
-                                        <option value="{{ $data }}">{{ $data }}</option>
+                                    <select class="form-control" id="names" name="names">
+                                        <option value="" selected>Choose Student</option>
+                                        @foreach($appointments as $userName => $appointmentDate)
+                                        <option value="{{ $userName }}">{{ $userName }} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -72,7 +72,7 @@
                             <div class="form-group row">
                                 <label for="date" class="col-sm-3 col-form-label">Date:</label>
                                 <div class="col-sm-8">
-                                    <select name="date" class="form-control border-primary" id="date" name="date" required>
+                                    <select name="date" class="form-control border-primary" id="date" required>
                                         <option value="App\Models\AvailabilityRecord::where('user_id', Auth::user()->id)" selected>Choose Date</option>
                                         @foreach($appointments as $Appdata)
                                         @php
@@ -91,9 +91,9 @@
 
 
                             <div class="form-group row">
-                                <label for="rate_satisfaction" class="col-sm-3 col-form-label">Rate satisfaction</label>
+                                <label for="rating" class="col-sm-3 col-form-label">Rate satisfaction</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control" id="rate_satisfaction">
+                                    <select class="form-control" id="rating" name="rating">
                                         <option value="">Select satisfaction level</option>
                                         <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (Highly Satisfied)</option>
                                         <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (Satisfied)</option>
@@ -108,7 +108,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Give your feedback/suggestion</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" id="w3review" name="w3review" rows="4" cols="50" placeholder=""></textarea>
+                                    <textarea class="form-control" id="comment" name="comment" rows="4" cols="50" placeholder=""></textarea>
                                 </div>
                             </div>
                     </div>

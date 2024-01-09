@@ -45,7 +45,7 @@
                         <td>{{ $data->time }}</td>
                         <td>{{ $data->venue }}</td>
                         <td>{{ $data->purpose }}</td>
-                        <td>
+                        <td class="text-center">
                             <form action="{{ route('deleteAppointment', $data->id)  }}" method="POST">
                                 @method('DELETE')
                                 @csrf

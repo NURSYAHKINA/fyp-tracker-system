@@ -13,11 +13,12 @@ class FeedbackRecord extends Model
 
     protected $fillable = [
         'id',
-        'id_matric',
-        'name',
+        //'id_matric',
+        'names',
         'rating',
         'comment',
         'user_id',
         'date',
+        
     ];
 }

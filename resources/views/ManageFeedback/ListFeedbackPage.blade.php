@@ -32,9 +32,8 @@
             <thead class="thead-light">
                     <tr style="text-align: center;">
                         <th style="width: 10px;">No</th>
-                        <th>ID Matric</th>
                         <th>Name</th>
-                       
+                        <th>Date</th>
                         <th>Rating</th>
                         <th>Comment</th>
                         <th style="width: 100px;">Action</th>
@@ -45,15 +44,19 @@
                     @foreach($FeedbackRecord as $data)
                     <tr id="row{{$data->id}}">
                         <td style="text-align: center;">{{ $no++ }}</td>
-                        <td>{{ $data->id_matric }}</td>
-                        <td>{{ $data->name }}</td>
-                      
+                        <td>{{ $data->names }}</td>
+                        <td>{{ $data->date }}</td>
                         <td>{{ $data->rating }}</td>
                         <td>{{ $data->comment }}</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                            <a href="{{route('viewFeedback', ['id' => $data->id])}}" class="mr-2"><i class="fas fa-eye font-12"></i></a>
-                            </div>
+                        <td class="text-center">
+                        <form action="{{ route('deleteFeedback', $data->id)  }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <a href="{{route('viewFeedback',['id' => $data->id])}}" class="mr-3"><i class="fas fa-eye font-14"></i></a>
+                                <a href="{{route('updateFeedback',['id' => $data->id])}}" class="mr-2"><i class="fas fa-edit text-primary font-14"></i></a>
+                                <button type="submit" name="submit" style="border: none; background: none;"><i class="fas fa-trash-alt text-danger font-14"></i></button>
+
+                            </form>
                         </td>
                     </tr>
                     @endforeach

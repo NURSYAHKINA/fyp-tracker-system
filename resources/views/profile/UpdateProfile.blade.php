@@ -16,7 +16,7 @@
                                 <div class="card-body">
                                     <form method="POST" class="form form-horizontal" action="{{route('updateUser' , ['id' => $userInfo->id])}}" id="updateForm">
                                         @csrf
-                                        @method('PUT')
+                                        @method('POST')
                                         <div class="form-body">
                                             <h4 class="form-section"><i class="fas fa-file-alt">&nbsp;&nbsp;&nbsp;</i>Users Details</h4>
                                             <br>

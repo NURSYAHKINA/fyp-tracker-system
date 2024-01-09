@@ -90,7 +90,7 @@ $user = auth()->user();
                 </div>
             </div>
 
-            @if($user->role_id === 2 || $user->role_id === 3)
+          
             <!-- Feedback Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <!-- Users Card -->
@@ -99,7 +99,7 @@ $user = auth()->user();
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Feedback</h6>
-                                <h2>{{App\Models\FeedbackRecord::where('user_id',Auth::user()->id)->count()}}</h2>
+                                <h2>{{App\Models\FeedbackRecord::where('id',Auth::user()->id)->count()}}</h2>
                                 <small class="text-small mt-10 d-block">All Feedback</small>
                             </div>
                             <div class="icon">
@@ -109,7 +109,7 @@ $user = auth()->user();
                     </div>
                 </div>
             </div>
-            @endif
+          
 
             <!-- Report Card -->
             <div class="col-lg-3 col-md-6 col-sm-12">

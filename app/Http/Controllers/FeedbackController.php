@@ -17,21 +17,10 @@ class FeedbackController extends Controller
     public function indexFeedback()
     {
         $currID = Auth::user()->id;
+        $FeedbackRecord = FeedbackRecord::all()
+        ->where('feedbacks.user_id', '=', $currID);
 
-        $FeedbackRecord = DB::table('feedbacks')
-            ->where('feedbacks.user_id', '=', $currID)
-            ->select(
-                'id',
-                'id_matric',
-                'name',
-                //'date',
-                'rating',
-                'comment',
-                'user_id',
-            )
-            ->get();
-
-        return view('ManageAppointment.ListAppointmentPage', compact('FeedbackRecord'));
+        return view('ManageFeedback.ListFeedbackPage', compact('FeedbackRecord'));
     }
 
     /**
@@ -39,10 +28,14 @@ class FeedbackController extends Controller
      */
     public function AddFeedback()
     {
-        $appointments = AppointmentRecord::select('appointments.date')
-            ->groupBy('appointments.date')
-            ->pluck('appointments.date')
-            ->all();
+        $curreID = Auth::user()->id;
+
+        $appointments = AppointmentRecord::select('appointments.date', 'users.name')
+        ->join('users', 'users.id', '=', 'appointments.user_id')
+        ->where('users.sv_id', '=', $curreID )
+        ->groupBy('appointments.date', 'users.name', 'appointments.user_id')
+        ->pluck('appointments.date', 'users.name')
+        ->all();    
 
         $users = UserRecord::select('users.name')
             ->join('roles', 'users.role_id', '=', 'roles.id')
@@ -62,9 +55,10 @@ class FeedbackController extends Controller
      */
     public function storeFeedback(Request $request)
     {
+     
         $currUser = Auth::user()->id;
         //$id_matric = $request->input('id_matric');
-        $name = $request->input('name');
+        $names = $request->input('names');
         $rating = $request->input('rating');
         $comment = $request->input('comment');
         $date = $request->input('date');
@@ -73,7 +67,7 @@ class FeedbackController extends Controller
         $Feedbackdata = array(
 
             //'id_matric' => $id_matric,
-            'name' => $name,
+            'names' => $names,
             'rating' => $rating,
             'comment' => $comment,
             'user_id' => $user_id,
@@ -81,7 +75,6 @@ class FeedbackController extends Controller
 
         );
 
-        dd($request);
         DB::table('feedbacks')->insert($Feedbackdata);
         return back()->with('success', 'Feedback successfully added');
     }
@@ -89,12 +82,13 @@ class FeedbackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function viewFeedback(string $id)
+    public function viewFeedback(Request $request, string $id)
     {
-        $FeedbackInfo = FeedbackRecord::find($id);
+       
+        $FeedbackRecord = FeedbackRecord::find($id);
         $userInfo = UserRecord::all(); // Fetch user from the database
-
-        return view('ManageFeedback.ViewFeedbackPage', compact('FeedbackInfo', 'userInfo'));
+        
+        return view('ManageFeedback.ViewFeedbackPage', compact('FeedbackRecord', 'userInfo'));
     }
 
     /**
@@ -117,7 +111,7 @@ class FeedbackController extends Controller
         $updateFeedbackInfo = FeedbackRecord::findOrFail($id);
 
         $validatedData = $request->validate([
-            'name' => 'name',
+            'names' => 'names',
             'rating' => 'rating',
             'comment' => 'comment',
         ]);
@@ -148,19 +142,8 @@ class FeedbackController extends Controller
     public function ListFeedback()
     {
         $currID = Auth::user()->id;
-
-        $FeedbackRecord = DB::table('feedbacks')
-            ->where('feedbacks.id', '=', $currID)
-            ->select(
-                'id',
-                'id_matric',
-                'name',
-                'rating',
-                'comment',
-                'user_id',
-            )
-            //->orderBy('asc')
-            ->get();
+        $FeedbackRecord = FeedbackRecord::all();
+      
 
         return view('ManageFeedback.ListFeedbackPage', compact('FeedbackRecord'));
     }

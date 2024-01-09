@@ -17,19 +17,10 @@ class ReportController extends Controller
     public function indexReport()
     {
         $currID = Auth::user()->id;
+        $ReportRecord = ReportRecord::all()
+        ->where('reports.user_id', '=', $currID);
 
-        $ReportRecord = DB::table('reports')
-            ->where('reports.user_id', '=', $currID)
-            ->select(
-                'id',
-                'user_id',
-                'name',
-                'date',
-                'feedback',
-            )
-            ->get();
-
-        return view('ManageReport.AddReportPage', compact('ReportRecord'));
+        return view('ManageReport.ListReportPage', compact('ReportRecord'));
     }
 
     /**
@@ -37,9 +28,10 @@ class ReportController extends Controller
      */
     public function addReport()
     {
-        $feedbacks = FeedbackRecord::select('feedbacks.date')
-            ->groupBy('feedbacks.date')
-            ->pluck('feedbacks.date')
+        $reports = FeedbackRecord::select('feedbacks.comment', 'feedbacks.names')
+            //->join('users', 'users.id', '=', 'feedbacks.user_id')
+            ->groupBy('feedbacks.comment', 'feedbacks.names')
+            ->pluck('feedbacks.comment', 'feedbacks.names')
             ->all();
 
         $users = UserRecord::select('users.name')
@@ -49,7 +41,7 @@ class ReportController extends Controller
             ->pluck('users.name')
             ->all();
 
-        return view('ManageReport.AddReportPage', compact('feedbacks', 'users'));
+        return view('ManageReport.AddReportPage', compact('reports', 'users'));
     }
 
     /**
@@ -58,12 +50,15 @@ class ReportController extends Controller
     public function storeReport(Request $request)
     {
         $currUser = Auth::user()->id;
-        $user_id = $request->input('user_id');
-        $name = $request->input('name');
-        $date = $request->input('date');
+       
+        $name = $request->input('names');
+        $date = now();
         $feedback = $request->input('feedback');
 
-        $data = array(
+       
+        $user_id = $currUser;
+
+        $Reportdata = array(
 
             'user_id' => $user_id,
             'name' => $name,
@@ -71,19 +66,21 @@ class ReportController extends Controller
             'feedback' => $feedback,
         );
 
-        DB::table('reports')->insert($data);
+        DB::table('reports')->insert($Reportdata);
         return back()->with('success', 'Report successfully added');
     }
 
     /**
      * Display the specified resource.
      */
-    public function viewReport(string $id)
+    public function viewReport(Request $request, string $id)
     {
-        $ReportInfo = ReportRecord::find($id);
+        $ReportInfo = ReportRecord::where('id', $id)->first();
+
+        // dd($ReportInfo);
         $userInfo = UserRecord::all(); // Fetch user from the database
 
-        return view('ManageReport.ViewReportPage', compact('ReportInfo ', 'userInfo'));
+        return view('ManageReport.ViewReportPage', compact('ReportInfo', 'userInfo'));
     }
 
     /**
@@ -91,9 +88,10 @@ class ReportController extends Controller
      */
     public function editReport(string $id)
     {
-        $userInfo = UserRecord::all(); // Fetch user from the database
+        //$userInfo = UserRecord::all(); // Fetch user from the database
+        $ReportInfo = ReportRecord::where('id', $id)->first();
 
-        return view('ManageReport.EditReportPage', compact('userInfo'));
+        return view('ManageReport.EditReportPage', compact('ReportInfo'));
     }
 
     /**
@@ -105,9 +103,10 @@ class ReportController extends Controller
          $updateReportInfo = ReportRecord::findOrFail($id);
 
          $validatedData = $request->validate([
-             'name' => 'name',
-             'feedback' => 'feedback',
-         ]);
+            'name' => 'required|string',
+            'feedback' => 'required|string',
+        ]);
+        
  
          $updateReportInfo->update($validatedData);
          return redirect()->route('ListReport')->with('success', 'Appointment details updated successfully!');
