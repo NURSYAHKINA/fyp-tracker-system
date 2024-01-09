@@ -47,7 +47,7 @@ $user = auth()->user();
                                         <div class="form-group row">
                                             <label class="col-md-6 label-control">Email</label>
                                             <div class="col-md-12">
-                                                <input class="form-control border-primary" style="width: 150%;" type="email" placeholder="Email" name="email" id="email" value="{{ old('email', $userInfo->email) }}">
+                                                <input class="form-control border-primary" style="width: 150%;" type="email" placeholder="Email" name="email" id="email" value="{{ old('email', $userInfo->email) }}" disabled>
                                             </div>
                                         </div>
 
